@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Новости аниме и манги | AniManga Paradise</title>
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/news-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <!-- Анимированный фон -->
+    <div class="background-animation light-background" id="backgroundAnimation"></div>
+
+    <!-- Модальное окно для комментариев -->
+    <div class="modal" id="commentAuthModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCommentModal">&times;</button>
+            <div class="cat-message">
+                <div class="cat-image">
+                    <img src="https://media.tenor.com/XCfjH_y1QjYAAAAi/crying-cat-cat-crying.gif" alt="Плачущий котик">
+                </div>
+                <div class="message-content">
+                    <h3>Мяу... только для своих! 🐱</h3>
+                    <p>Чтобы оставлять комментарии, нужно сначала присоединиться к нашему отряду! Вступите в сообщество фанатов аниме и получите доступ ко всем функциям!</p>
+                    <button class="btn-primary" onclick="openAuthModal()">
+                        <i class="fas fa-user-plus"></i> Вступить в отряд!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для игр -->
+    <div class="modal game-modal" id="gameModal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 id="gameModalTitle"></h2>
+            <div id="gameModalContent"></div>
+        </div>
+    </div>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-sun" id="themeLogo"></i>
+                </div>
+                <h1 class="site-name">AniManga Paradise</h1>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="catalog.html" class="nav-link">
+                    <i class="fas fa-book"></i> Каталог
+                </a>
+                <a href="news.html" class="nav-link">
+                    <i class="fas fa-newspaper"></i> Новости
+                </a>
+                <a href="merch.html" class="nav-link">
+                    <i class="fas fa-tshirt"></i> Мерч
+                </a>
+                <a href="forum.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Форум
+                </a>
+            </nav>
+
+            <!-- Блок иконок в горизонтальном виде -->
+            <div class="header-icons-container">
+                <div class="icon-with-badge">
+                    <a href="cart.html" class="icon-btn cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="icon-badge cart-count">3</span>
+                        <span class="icon-tooltip">Корзина</span>
+                    </a>
+                </div>
+                <div class="icon-with-badge">
+                    <a href="profile.html" class="icon-btn profile-icon">
+                        <i class="fas fa-user"></i>
+                        <span class="icon-tooltip">Профиль</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="light" title="Светлая тема">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="dark" title="Темная тема">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="anime" title="Аниме тема">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент новостей -->
+    <main class="news-page">
+        <div class="container">
+            <!-- Приветственное окно с котиком -->
+            <section class="cat-welcome">
+                <div class="cat-gif">
+                    <img src="https://media.tenor.com/kl7R3D0w1GYAAAAi/snorlax.gif" alt="Снорлакс приветствует">
+                </div>
+                <div class="welcome-text">
+                    <h1><i class="fas fa-newspaper"></i> Новости из мира ваших любимых фандомов!</h1>
+                    <p>Самые свежие анонсы, события, обзоры и эксклюзивы из мира аниме, манги и японской культуры. Будь в курсе всего, что происходит!</p>
+                </div>
+            </section>
+
+            <!-- Аккордеон из 3 новостей -->
+            <section class="news-accordion">
+                <h2 class="section-title">
+                    <i class="fas fa-fire"></i> Горячие новости
+                </h2>
+
+                <div class="accordion" id="newsAccordion">
+                    <!-- Новость 1 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div>
+                                <h3>Зимний аниме-фестиваль "Snow Festival 2025"</h3>
+                                <small><i class="fas fa-calendar"></i> 15-18 декабря 2025</small>
+                            </div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Крупнейший зимний аниме-фестиваль! Новогодняя атмосфера, зимние косплеи, горячий шоколад и специальные гости из Японии.</p>
+                            <div class="news-ticket-info">
+                                <strong>Билеты:</strong> от 2000₽ за день, 5000₽ за 4 дня<br>
+                                <strong>Место:</strong> Ледовый дворец, Санкт-Петербург<br>
+                                <strong>Купить:</strong> <a href="https://vk.com/snowfest2025" target="_blank">Официальная группа VK</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Новость 2 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div>
+                                <h3>Новогодняя распродажа 2025-2026</h3>
+                                <small><i class="fas fa-calendar"></i> 31 декабря - 10 января</small>
+                            </div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Скидки до 70% на весь ассортимент магазина! Только в период новогодних праздников.</p>
+                            <div class="news-ticket-info">
+                                <strong>Даты:</strong> 31.12.2025 - 10.01.2026<br>
+                                <strong>Скидки:</strong> 30-70% на мангу, мерч и фигурки<br>
+                                <strong>Промокод:</strong> NEWYEAR2026
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Новость 3 -->
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div>
+                                <h3>Премьера фильма "Наруто: Последний путь"</h3>
+                                <small><i class="fas fa-calendar"></i> 5 января 2026</small>
+                            </div>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Премьера полнометражного фильма по мотивам манги "Наруто" в российских кинотеатрах.</p>
+                            <div class="news-ticket-info">
+                                <strong>Дата премьеры:</strong> 5 января 2026<br>
+                                <strong>Формат:</strong> 2D, IMAX, 4DX<br>
+                                <strong>Билеты:</strong> <a href="https://vk.com/narutomovie" target="_blank">Предзаказ в VK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Игровая зона -->
+            <section class="game-zone">
+                <h2 class="section-title">
+                    <i class="fas fa-gamepad"></i> Аниме-игровая зона
+                </h2>
+                <p class="section-subtitle">Играйте в любимые аниме-игры и получайте эксклюзивный мерч!</p>
+
+                <div class="game-cards">
+                    <div class="game-card" data-game="genshin">
+                        <div class="game-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h3>Genshin Impact</h3>
+                        <p>Турнир с призовым фондом 50,000₽</p>
+                        <span class="btn-secondary">Узнать условия</span>
+                    </div>
+
+                    <div class="game-card" data-game="honkai">
+                        <div class="game-icon">
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <h3>Honkai: Star Rail</h3>
+                        <p>Новые ивенты каждый месяц</p>
+                        <span class="btn-secondary">Узнать условия</span>
+                    </div>
+
+                    <div class="game-card" data-game="zenless">
+                        <div class="game-icon">
+                            <i class="fas fa-ghost"></i>
+                        </div>
+                        <h3>Zenless Zone Zero</h3>
+                        <p>Первый официальный турнир в России</p>
+                        <span class="btn-secondary">Узнать условия</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Основные новости (9 штук) -->
+            <section class="main-news">
+                <h2 class="section-title">
+                    <i class="fas fa-star"></i> Все новости
+                </h2>
+
+                <!-- Новость 1 (Декабрь 2025) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Зимний фестиваль" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: var(--accent-color); color: white;">СОБЫТИЕ</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 15-18 декабря 2025</span>
+                        </div>
+
+                        <h2>Зимний аниме-фестиваль "Snow Festival 2025"</h2>
+                        <p class="news-theme">Тема: Зимние косплеи, новогодняя атмосфера, зимние активности</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-map-marker-alt"></i> Санкт-Петербург, Ледовый дворец</span>
+                            <span><i class="fas fa-ruble-sign"></i> Билеты от 2000₽</span>
+                            <span><i class="fas fa-snowflake"></i> Температура: -5°C до +5°C</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Особенности фестиваля:</h4>
+                            <ul>
+                                <li>Зона зимних косплеев с тематикой снега и льда</li>
+                                <li>Каток с аниме-музыкой</li>
+                                <li>Горячий шоколад и зимние угощения</li>
+                                <li>Новогодний арт-маркет</li>
+                                <li>Фейерверк в последний день</li>
+                            </ul>
+                            <p><strong>Билеты:</strong> <a href="https://vk.com/snowfest2025" target="_blank">vk.com/snowfest2025</a></p>
+                        </div>
+
+                        <p>Первый зимний аниме-фестиваль в России! Мы создали уникальную атмосферу, где аниме-культура встречается с зимней сказкой. Ожидаются специальные гости из Японии, зимние косплей-шоу и много сюрпризов.</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+
+                            <div class="comment-form">
+                                <textarea placeholder="Напишите ваш комментарий..." rows="3"></textarea>
+                                <button class="btn-primary" onclick="submitComment(this.parentElement)">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 2 (1 декабря 2025) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Новогодняя распродажа" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #10b981; color: white;">АКЦИЯ</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 1 декабря 2025</span>
+                        </div>
+
+                        <h2>Старт предновогодней распродажи</h2>
+                        <p class="news-theme">Тема: Скидки, промокоды, новогодние подарки</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-percentage"></i> Скидки до 50%</span>
+                            <span><i class="fas fa-gift"></i> Подарки к каждому заказу</span>
+                            <span><i class="fas fa-truck"></i> Бесплатная доставка от 3000₽</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Условия акции:</h4>
+                            <ul>
+                                <li>Скидка 50% на старые коллекции манги</li>
+                                <li>30% скидка на весь мерч</li>
+                                <li>Каждый 5-й товар в подарок</li>
+                                <li>Промокод: DECEMBER25 (дополнительные 10%)</li>
+                            </ul>
+                        </div>
+
+                        <p>Начинаем декабрь с грандиозных скидок! Успейте купить подарки к Новому году по выгодным ценам. Акция действует с 1 по 31 декабря 2025 года.</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 3 (18 декабря 2025) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1567593810070-7a5c0925344e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Косплей конкурс" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #8b5cf6; color: white;">КОНКУРС</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 18 декабря 2025</span>
+                        </div>
+
+                        <h2>Косплей-конкурс "Зимняя сказка"</h2>
+                        <p class="news-theme">Тема: Зимние и новогодние косплеи</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-trophy"></i> Призовой фонд: 100,000₽</span>
+                            <span><i class="fas fa-users"></i> Участников: 50+</span>
+                            <span><i class="fas fa-snowman"></i> Тема: Зима и Новый год</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Номинации конкурса:</h4>
+                            <ul>
+                                <li>Лучший зимний косплей (30,000₽)</li>
+                                <li>Лучший новогодний образ (25,000₽)</li>
+                                <li>Лучшая handmade-работа (20,000₽)</li>
+                                <li>Приз зрительских симпатий (15,000₽)</li>
+                                <li>Специальный приз от жюри (10,000₽)</li>
+                            </ul>
+                            <p><strong>Регистрация:</strong> до 15 декабря на сайте</p>
+                        </div>
+
+                        <p>Ежегодный зимний косплей-конкурс с увеличенным призовым фондом! В этом году особый акцент на зимнюю и новогоднюю тематику.</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 4 (20 декабря 2025) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Встреча с режиссером" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #f59e0b; color: white;">ВСТРЕЧА</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 20 декабря 2025</span>
+                        </div>
+
+                        <h2>Встреча с режиссером Макото Синкаем</h2>
+                        <p class="news-theme">Тема: Аниме, режиссура, творческая встреча</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-user-tie"></i> Гость: Макото Синкай</span>
+                            <span><i class="fas fa-film"></i> Фильмы: "Твое имя", "Ветер крепчает"</span>
+                            <span><i class="fas fa-microphone"></i> Формат: Q&A сессия</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Программа встречи:</h4>
+                            <ul>
+                                <li>18:00 - Показ фильма "Твое имя"</li>
+                                <li>20:30 - Встреча с режиссером</li>
+                                <li>21:30 - Автограф-сессия</li>
+                                <li>22:30 - Фотосессия</li>
+                            </ul>
+                            <p><strong>Место:</strong> Москва, Кинотеатр "Октябрь"</p>
+                            <p><strong>Билеты:</strong> 3000₽ (включает просмотр фильма)</p>
+                        </div>
+
+                        <p>Эксклюзивная встреча с легендарным японским режиссером Макото Синкаем! Уникальная возможность задать вопросы создателю "Твоего имени" и "Ветра крепчает".</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 5 (31 декабря 2025) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Новогодний стрим" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #ec4899; color: white;">ОНЛАЙН</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 31 декабря 2025</span>
+                        </div>
+
+                        <h2>Новогодний аниме-стрим 2026</h2>
+                        <p class="news-theme">Тема: Новый год, стрим, раздачи, конкурсы</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-clock"></i> Начало: 22:00</span>
+                            <span><i class="fas fa-hourglass-end"></i> Окончание: 4:00</span>
+                            <span><i class="fas fa-gifts"></i> Призы: 50+ подарков</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Что будет на стриме:</h4>
+                            <ul>
+                                <li>Просмотр новогодних аниме-эпизодов</li>
+                                <li>Конкурсы с призами каждые 30 минут</li>
+                                <li>Раздача промокодов на скидки</li>
+                                <li>Прямое включение из Японии в 00:00</li>
+                                <li>Специальные гости: аниме-блогеры</li>
+                            </ul>
+                            <p><strong>Платформы:</strong> Twitch, YouTube, VK Live</p>
+                        </div>
+
+                        <p>Встречайте Новый 2026 год вместе с нами! 6-часовой марафон с аниме, конкурсами, призами и отличным настроением. Не пропустите главное событие года!</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 6 (1 января 2026) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Новогодний турнир" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #6366f1; color: white;">ТУРНИР</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 1 января 2026</span>
+                        </div>
+
+                        <h2>Новогодний турнир по аниме-викторине</h2>
+                        <p class="news-theme">Тема: Викторина, знания аниме, призы</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-brain"></i> Вопросы: 100+</span>
+                            <span><i class="fas fa-trophy"></i> Призы: 25,000₽</span>
+                            <span><i class="fas fa-users"></i> Участников: 500+</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Категории вопросов:</h4>
+                            <ul>
+                                <li>Классические аниме (1980-2000)</li>
+                                <li>Современные аниме (2001-2025)</li>
+                                <li>Манга и ранобэ</li>
+                                <li>Сэйю и создатели</li>
+                                <li>Музыка из аниме</li>
+                            </ul>
+                            <p><strong>Регистрация:</strong> бесплатная, онлайн-форма</p>
+                            <p><strong>Начало:</strong> 1 января в 14:00 по МСК</p>
+                        </div>
+
+                        <p>Начните новый год с проверки своих знаний аниме! Онлайн-турнир с вопросами разной сложности. Победитель получит главный приз и звание "Аниме-энциклопедиста 2026".</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 7 (3 января 2026) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Распродажа фигурок" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #f97316; color: white;">РАСПРОДАЖА</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 3 января 2026</span>
+                        </div>
+
+                        <h2>Распродажа коллекционных фигурок</h2>
+                        <p class="news-theme">Тема: Фигурки, коллекционные издания, скидки</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-percentage"></i> Скидка: до 60%</span>
+                            <span><i class="fas fa-box"></i> Товаров: 300+</span>
+                            <span><i class="fas fa-star"></i> Эксклюзивы: 50+</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Что будет в продаже:</h4>
+                            <ul>
+                                <li>Фигурки серии "Figure Arts" (40% скидка)</li>
+                                <li>Коллекционные издания "Masterline" (50% скидка)</li>
+                                <li>Редкие фигурки из Японии (30% скидка)</li>
+                                <li>Эксклюзивы с конвенций (60% скидка)</li>
+                            </ul>
+                            <p><strong>Начало:</strong> 3 января в 10:00 по МСК</p>
+                            <p><strong>Промокод:</strong> JAN3FIGURES (дополнительные 15%)</p>
+                        </div>
+
+                        <p>Единственная в году распродажа коллекционных фигурок со скидками до 60%! Успейте приобрести редкие экземпляры для своей коллекции.</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 8 (5 января 2026) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Лекция по истории манги" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #0ea5e9; color: white;">ЛЕКЦИЯ</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 5 января 2026</span>
+                        </div>
+
+                        <h2>Лекция "История манги: от Хокусая до наших дней"</h2>
+                        <p class="news-theme">Тема: История, искусство, образование</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-user-graduate"></i> Лектор: профессор Танака</span>
+                            <span><i class="fas fa-clock"></i> Длительность: 3 часа</span>
+                            <span><i class="fas fa-language"></i> Язык: русский с переводом</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Темы лекции:</h4>
+                            <ul>
+                                <li>Истоки манги в японском искусстве</li>
+                                <li>Золотой век манги (1960-1980)</li>
+                                <li>Влияние манги на мировую культуру</li>
+                                <li>Современные тенденции</li>
+                                <li>Будущее манги в цифровую эпоху</li>
+                            </ul>
+                            <p><strong>Формат:</strong> онлайн и офлайн (Москва)</p>
+                            <p><strong>Стоимость:</strong> 1500₽ (онлайн), 2500₽ (офлайн)</p>
+                        </div>
+
+                        <p>Уникальная лекция от японского профессора, специалиста по истории манги. Подробный разбор эволюции японских комиксов за 200 лет.</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Новость 9 (10 января 2026) -->
+                <article class="news-full-card">
+                    <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                         alt="Закрытие мероприятий" class="news-full-image">
+
+                    <div class="news-full-content">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #8b5cf6; color: white;">ЗАКРЫТИЕ</span>
+                            <span class="news-date"><i class="far fa-calendar"></i> 10 января 2026</span>
+                        </div>
+
+                        <h2>Закрытие новогодних мероприятий: итоги и награждение</h2>
+                        <p class="news-theme">Тема: Итоги, награждение, закрытие сезона</p>
+
+                        <div class="news-meta-info">
+                            <span><i class="fas fa-award"></i> Награждений: 50+</span>
+                            <span><i class="fas fa-gift"></i> Призов: 100+</span>
+                            <span><i class="fas fa-users"></i> Участников: 5000+</span>
+                        </div>
+
+                        <div class="news-ticket-info">
+                            <h4>Программа закрытия:</h4>
+                            <ul>
+                                <li>17:00 - Награждение победителей конкурсов</li>
+                                <li>18:30 - Концерт с аниме-музыкой</li>
+                                <li>20:00 - Фейерверк</li>
+                                <li>21:00 - Закрытая вечеринка для участников</li>
+                            </ul>
+                            <p><strong>Место:</strong> Москва, Крокус Сити Холл</p>
+                            <p><strong>Билеты:</strong> 2000₽ (только для участников мероприятий)</p>
+                        </div>
+
+                        <p>Торжественное закрытие новогоднего сезона мероприятий. Награждение всех победителей конкурсов, концерт и праздничный фейерверк. Завершаем праздники с размахом!</p>
+
+                        <div class="comment-section">
+                            <button class="btn-secondary" onclick="showCommentForm(this)">
+                                <i class="far fa-comment"></i> Оставить комментарий
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Интерактивный календарь событий -->
+            <section class="calendar-container">
+                <h2 class="section-title">
+                    <i class="fas fa-calendar-alt"></i> Календарь событий 2025-2026
+                </h2>
+
+                <div class="calendar-header">
+                    <button class="btn-secondary calendar-prev">
+                        <i class="fas fa-chevron-left"></i> Назад
+                    </button>
+
+                    <h3 class="calendar-month">Декабрь 2025</h3>
+
+                    <button class="btn-secondary calendar-next">
+                        Вперед <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div id="calendarContainer">
+                    <!-- Календарь будет сгенерирован через JavaScript -->
+                </div>
+
+                <div class="events-list" id="eventsList">
+                    <!-- События будут показаны здесь -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-hashtag"></i> Социальные сети</h3>
+                <div class="social-links">
+                    <a href="https://vk.com/animangaparadise" target="_blank" class="social-link vk">
+                        <i class="fab fa-vk"></i> ВКонтакте
+                    </a>
+                    <a href="https://t.me/animangaparadise" target="_blank" class="social-link telegram">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="https://instagram.com/animangaparadise" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://youtube.com/@animangaparadise" target="_blank" class="social-link youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-question-circle"></i> Помощь покупателю</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Доставка и оплата</a></li>
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Возврат товара</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Частые вопросы</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Поддержка 24/7</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> О магазине</h3>
+                <p>AniManga Paradise - крупнейший магазин аниме, манги и мерча в России. Мы работаем с 2015 года и предлагаем только оригинальную продукцию.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Мира 82, Красноярск</p>
+                    <p><i class="fas fa-phone"></i> +7 (391) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@animanga.ru</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+                <i class="fas fa-credit-card" title="Наличные"></i>
+                <i class="fas fa-fish" title="Рыбкой"></i>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2015-2026 AniManga Paradise. Все права защищены.</p>
+                <p class="made-with">
+                    <i class="fas fa-heart"></i> Сделано с любовью для фанатов аниме
+                    <i class="fas fa-heart"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов -->
+    <script src="js/theme-switcher.js"></script>
+    <script src="js/news-script.js"></script>
+
+    <script>
+        // Обновляем данные календаря для 2025-2026 годов
+        const calendarEventsUpdated = {
+            // Декабрь 2025
+            '2025-12-01': [
+                { title: 'Старт предновогодней распродажи', description: 'Скидки до 50% на весь ассортимент', time: '10:00' }
+            ],
+            '2025-12-15': [
+                { title: 'Начало зимнего фестиваля "Snow Festival 2025"', description: 'Санкт-Петербург, Ледовый дворец', time: '12:00' }
+            ],
+            '2025-12-18': [
+                { title: 'Косплей-конкурс "Зимняя сказка"', description: 'Призовой фонд 100,000₽', time: '15:00' }
+            ],
+            '2025-12-20': [
+                { title: 'Встреча с режиссером Макото Синкаем', description: 'Москва, кинотеатр "Октябрь"', time: '18:00' }
+            ],
+            '2025-12-31': [
+                { title: 'Новогодний аниме-стрим 2026', description: '6-часовой марафон с призами', time: '22:00' }
+            ],
+
+            // Январь 2026
+            '2026-01-01': [
+                { title: 'Новогодний турнир по аниме-викторине', description: 'Приз 25,000₽ за знания аниме', time: '14:00' }
+            ],
+            '2026-01-03': [
+                { title: 'Распродажа коллекционных фигурок', description: 'Скидки до 60% на 300+ товаров', time: '10:00' }
+            ],
+            '2026-01-05': [
+                { title: 'Лекция "История манги"', description: 'Профессор Танака, онлайн/офлайн', time: '16:00' },
+                { title: 'Премьера фильма "Наруто: Последний путь"', description: 'В кинотеатрах по всей России', time: '19:00' }
+            ],
+            '2026-01-08': [
+                { title: 'Презентация новой манги "Cyber Tokyo 2077"', description: 'Автор: Юки Табата', time: '18:00' }
+            ],
+            '2026-01-10': [
+                { title: 'Закрытие новогодних мероприятий', description: 'Награждение, концерт, фейерверк', time: '17:00' }
+            ],
+
+            // Существующие события 2024 (оставляем для примера)
+            '2024-04-15': [
+                { title: 'Выход новой манги "Demon Slayer: College Days"', description: 'Спин-офф в современном мире', time: '10:00' }
+            ],
+            '2024-04-20': [
+                { title: 'Онлайн-встреча с мангакой Юки Табата', description: 'Трансляция в VK Live', time: '19:00' }
+            ]
+        };
+
+        // Обновляем переменную calendarEvents в глобальной области видимости
+        window.calendarEvents = calendarEventsUpdated;
+    </script>
+</body>
+</html>

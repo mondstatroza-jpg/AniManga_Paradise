@@ -1,0 +1,641 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - AniManga Paradise</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <!-- Общая шапка сайта (как в основном файле) -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-sun" id="themeLogo"></i>
+                </div>
+                <h1 class="site-name">AniManga Paradise</h1>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="catalog.html" class="nav-link">
+                    <i class="fas fa-book"></i> Каталог
+                </a>
+                <a href="news.html" class="nav-link">
+                    <i class="fas fa-newspaper"></i> Новости
+                </a>
+                <a href="merch.html" class="nav-link">
+                    <i class="fas fa-tshirt"></i> Мерч
+                </a>
+                <a href="forum.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Форум
+                </a>
+            </nav>
+
+            <!-- Мини-окно с иконками -->
+            <div class="header-icons-container">
+                <div class="header-icons">
+                    <div class="icon-with-badge">
+                        <a href="profile.html" class="icon-btn active" title="Профиль">
+                            <i class="fas fa-user"></i>
+                            <span class="icon-tooltip">Профиль</span>
+                        </a>
+                    </div>
+                    <div class="icon-with-badge">
+                        <a href="cart.html" class="icon-btn cart-icon" title="Корзина">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="icon-badge cart-count">3</span>
+                            <span class="icon-tooltip">Корзина</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" data-theme="light" title="Светлая тема">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="dark" title="Темная тема">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="anime" title="Аниме тема">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-page">
+        <div class="profile-joke-container">
+            <!-- Большой заголовок -->
+            <div class="joke-header">
+                <h1 class="joke-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    У НАС КОТИКИ ЛЕНИВЫЕ, А РАЗРАБЫ ВСЕ В НИХ ПОШЛИ!
+                    <i class="fas fa-exclamation-triangle"></i>
+                </h1>
+                <h2 class="joke-subtitle">БОЛЬШЕ ТУТ НИЧЕГО ИНТЕРЕСНОГО НЕТ</h2>
+            </div>
+
+            <!-- Котик-разработчик -->
+            <div class="developer-cat">
+                <div class="cat-image">
+                    <img src="https://i.gifer.com/origin/16/1660639816481fa63dd710d1de5ae946_w200.gif"
+                         alt="Кот-разработчик за ноутбуком">
+                </div>
+                <div class="cat-bio">
+                    <h3>Встречайте: наш главный разработчик!</h3>
+                    <div class="cat-speech">
+                        <p>"Мяу! Я - тот самый ленивый котик, про которого все говорят. Мои обязанности:</p>
+                        <ul>
+                            <li>Спать на клавиатуре (16 часов в день)</li>
+                            <li>Сбивать стакан с водой на сервер (2 раза в неделю)</li>
+                            <li>Мяукать, когда кто-то пытается работать (постоянно)</li>
+                            <li>Притворяться, что я тестирую интерфейс (лежу на мониторе)</li>
+                        </ul>
+                        <p>Как видите, я прекрасно справляюсь со своими обязанностями!"</p>
+                    </div>
+                    <div class="cat-credentials">
+                        <span><strong>Должность:</strong> Главный по мурлыканью</span>
+                        <span><strong>Стаж:</strong> 3 года (в кошачьих это 21 год)</span>
+                        <span><strong>Зарплата:</strong> Корм премиум-класса и лакомства</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Кошачьи шутки -->
+            <div class="cat-jokes-section">
+                <h3><i class="fas fa-cat"></i> Мур-шутки от котика</h3>
+                <div class="joke-carousel">
+                    <div class="joke-item">
+                        <p>"Почему кот-отаку смотрит аниме в очках? Потому что без них он не видит аниме!"</p>
+                        <div class="joke-author">--- Мурзик, главный мемолог</div>
+                    </div>
+                    <div class="joke-item">
+                        <p>"Что говорит кот, когда смотрит аниме? 'Мяу-га столько эмоций!'"</p>
+                        <div class="joke-author">--- Кот-самурай</div>
+                    </div>
+                    <div class="joke-item">
+                        <p>"Как кот выбирает аниме? Смотрит рейтинг на MyAnimeList... и мяукает в знак одобрения!"</p>
+                        <div class="joke-author">--- Профессор Мяу</div>
+                    </div>
+                    <div class="joke-item">
+                        <p>"Почему кот предпочитает аниме? Потому что там много рыбы... в море приключений!"</p>
+                        <div class="joke-author">--- Рыболов Кот</div>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="showRandomJoke()" style="margin-top: 2rem;">
+                    <i class="fas fa-random"></i> Ещё шутку, котик!
+                </button>
+            </div>
+
+            <!-- Кнопка "авторизации" -->
+            <div class="auth-joke">
+                <h3><i class="fas fa-user-lock"></i> Хотите "авторизоваться"?</h3>
+                <p>Серьёзно? Вы думаете, у нас тут есть нормальная авторизация? Мы же написали, что разработчики в котиков пошли!</p>
+                <button class="btn-primary joke-auth-btn" onclick="showAuthJoke()">
+                    <i class="fas fa-paw"></i> Нажми меня, если не веришь!
+                </button>
+                <div class="auth-warning">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Предупреждение: нажатие этой кнопки вызовет разочарование и саркастическое мяуканье</span>
+                </div>
+            </div>
+
+            <!-- Реклама -->
+            <div class="profile-ad">
+                <div class="profile-ad-content">
+                    <h3><i class="fas fa-gift"></i> Специальное предложение для любителей котиков!</h3>
+                    <p>Хотите получить эксклюзивный мерч с нашими котиками-разработчиками? Только сегодня скидка 30% на все товары с котиками!</p>
+                    <p>Промокод: <strong>KOTIKLOVE</strong></p>
+                    <button class="btn-primary" onclick="showCatModal()">
+                        <i class="fas fa-shopping-cart"></i> Получить мерч с котиком!
+                    </button>
+                </div>
+            </div>
+
+            <!-- Что "доступно" в личном кабинете -->
+            <div class="fake-features">
+                <h3><i class="fas fa-list-check"></i> Вот что бы у вас было, если бы мы не были ленивыми:</h3>
+                <div class="features-grid">
+                    <div class="feature-card disabled">
+                        <div class="feature-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h4>История заказов</h4>
+                        <p>Здесь могли быть ваши покупки. Но их нет. Потому что котик.</p>
+                        <span class="status-badge"><i class="fas fa-times"></i> Не работает</span>
+                    </div>
+                    <div class="feature-card disabled">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Избранное</h4>
+                        <p>Ваши любимые товары. Шучу, мы их не сохранили.</p>
+                        <span class="status-badge"><i class="fas fa-times"></i> Не работает</span>
+                    </div>
+                    <div class="feature-card disabled">
+                        <div class="feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h4>Бонусы</h4>
+                        <p>Бонусная система. Ха-ха, хорошая шутка!</p>
+                        <span class="status-badge"><i class="fas fa-times"></i> Не работает</span>
+                    </div>
+                    <div class="feature-card disabled">
+                        <div class="feature-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h4>Настройки</h4>
+                        <p>Настройте аккаунт. Настройте-ка лучше котику подушку.</p>
+                        <span class="status-badge"><i class="fas fa-times"></i> Не работает</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Реальные функции (шутка) -->
+            <div class="real-features">
+                <h3><i class="fas fa-cat"></i> А вот что работает на самом деле:</h3>
+                <div class="real-features-list">
+                    <div class="real-feature">
+                        <div class="feature-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Смотреть на котиков</h4>
+                            <p>Функция №1. Работает идеально. Котики всегда на месте.</p>
+                        </div>
+                    </div>
+                    <div class="real-feature">
+                        <div class="feature-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Восхищаться котиками</h4>
+                            <p>Функция №2. Никогда не ломается. Котики прекрасны.</p>
+                        </div>
+                    </div>
+                    <div class="real-feature">
+                        <div class="feature-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Мечтать стать котиком</h4>
+                            <p>Функция №3. Работает у 99% посетителей.</p>
+                        </div>
+                    </div>
+                    <div class="real-feature">
+                        <div class="feature-check">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Осознать, что вы не котик</h4>
+                            <p>Функция №4. Вызывает легкую грусть, но работает стабильно.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Заключение -->
+            <div class="conclusion">
+                <div class="conclusion-cat">
+                    <img src="https://i.gifer.com/origin/8c/8ca4278f682cd5e83180ecc2f2c8c452_w200.gif"
+                         alt="Котик подмигивает">
+                </div>
+                <div class="conclusion-text">
+                    <h3>Мораль этой страницы:</h3>
+                    <p>Не всё в этой жизни должно быть серьёзным. Иногда можно просто посмотреть на котиков, улыбнуться и пойти купить мангу. А "личный кабинет"... он вам действительно нужен?</p>
+                    <p>P.S. Если очень хочется что-то настроить - напишите котику. Он обещал подумать (но, скорее всего, просто уснёт).</p>
+                    <div class="action-buttons">
+                        <a href="catalog.html" class="btn-primary">
+                            <i class="fas fa-shopping-bag"></i> Купить мангу (это работает!)
+                        </a>
+                        <a href="index.html" class="btn-secondary">
+                            <i class="fas fa-home"></i> Вернуться на главную
+                        </a>
+                        <button class="btn-secondary" onclick="petTheCat()">
+                            <i class="fas fa-paw"></i> Погладить котика (виртуально)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Общий подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-hashtag"></i> Социальные сети</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link vk">
+                        <i class="fab fa-vk"></i> VKontakte
+                    </a>
+                    <a href="#" class="social-link telegram">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="#" class="social-link instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="#" class="social-link youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-question-circle"></i> Помощь</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Доставка и оплата</a></li>
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Возврат товара</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Частые вопросы</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Техническая поддержка</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> О нас</h3>
+                <p>AniManga Paradise - магазин, где работают котики, а люди только притворяются, что что-то делают.</p>
+                <div class="newsletter">
+                    <h4>Подпишись на новости:</h4>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" id="newsletterEmail">
+                        <button class="btn-secondary" onclick="subscribeNewsletter()">
+                            <i class="fas fa-paper-plane"></i> Подписаться
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+                <i class="fas fa-credit-card" title="Наличные"></i>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 AniManga Paradise. Все права защищены.</p>
+                <p class="made-with">
+                    <i class="fas fa-heart"></i> Разработано котиками, для людей
+                    <i class="fas fa-heart"></i>
+                </p>
+                <p class="cat-disclaimer"><small>На самом деле, котики только мешали. Но они такие милые!</small></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно с котиком -->
+    <div class="modal" id="catModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCatModal">&times;</button>
+            <div class="cat-message">
+                <div class="cat-image">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6d03bde4ba4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+                         alt="Осуждающий котик">
+                </div>
+                <div class="message-content">
+                    <h3>Мяу... серьёзно? 🐱</h3>
+                    <p>Хотите мерч с котиком? А кто его делать будет? Я? Я же сплю 20 часов в сутки!</p>
+                    <div class="cat-thought">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>"Очередной человеческий запрос... мррр..."</span>
+                    </div>
+                    <button class="btn-primary" id="understandCatBtn">
+                        <i class="fas fa-paw"></i> Понял, котик, ты прав!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Функция "авторизации"
+        function showAuthJoke() {
+            // Показываем модальное окно с котиком
+            document.getElementById('catModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Меняем содержимое для авторизации
+            document.querySelector('#catModal .message-content h3').textContent = 'Мяу... опять? 😾';
+            document.querySelector('#catModal .message-content p').innerHTML =
+                'Вы с главной страницы не поняли, что авторизации нет? Я же там тоже самое окно показывал!<br><br>' +
+                'Ладно, повторю для особо настойчивых: <strong>АВТОРИЗАЦИИ НЕТ</strong>. Мы же не дураки, чтобы пароли хранить. Мы котики!';
+            document.querySelector('#catModal .cat-thought span').textContent = 'Иногда люди такие наивные... мяу';
+        }
+
+        // Функция "погладить котика"
+        function petTheCat() {
+            // Случайные реакции котика
+            const reactions = [
+                { text: "Мурррр... 😻", sound: "Мяяяяууу!" },
+                { text: "Не останавливайся! 🐾", sound: "Мур-мур-мур" },
+                { text: "Спасибо, человекиш! 🐱", sound: "Бррр-мяу!" },
+                { text: "Сюда, под чешуйку! ✨", sound: "Пуф-пуф-мяу" },
+                { text: "Я прощаю тебе все твои грехи... на пять минут. 🙏", sound: "Аминь-мяу" }
+            ];
+
+            const randomReaction = reactions[Math.floor(Math.random() * reactions.length)];
+
+            // Создаем уведомление
+            const notification = document.createElement('div');
+            notification.className = 'notification notification-success';
+            notification.innerHTML = `
+                    <i class="fas fa-cat"></i>
+                    <div>
+                        <strong>Котик:</strong> ${randomReaction.text}
+                        <div style="font-size: 0.8em; opacity: 0.8;">${randomReaction.sound}</div>
+                    </div>
+                `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+
+            // Консольный лог для разработчиков
+            console.log('%c🐱 КОТИК БЫЛ ПОГЛАЖЕН!', 'color: #ff6b9d; font-size: 16px; font-weight: bold;');
+            console.log(`%cРеакция: ${randomReaction.text}`, 'color: #666;');
+            console.log('%cУровень счастья котика: +10%', 'color: #4CAF50;');
+        }
+
+        // Функция показа случайной шутки
+        function showRandomJoke() {
+            const jokes = [
+                "Что кот сказал после просмотра Наруто? 'Мне нужны друзья как у Наруто, но чтобы они приносили рыбку!'",
+                "Почему кот смотрит аниме на японском? Потому что на кошачьем языке не дублируют!",
+                "Как кот выбирает аниме? По количеству рыбы в сюжете!",
+                "Что кот думает об аниме-фандомах? 'Много шума из-за ничего... хотя сашими было бы неплохо!'",
+                "Почему коты любят аниме? Потому что там все персонажи такие же гибкие, как они!"
+            ];
+
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+
+            // Создаем уведомление
+            const notification = document.createElement('div');
+            notification.className = 'notification notification-info';
+            notification.innerHTML = `
+                    <i class="fas fa-theater-masks"></i>
+                    <div>
+                        <strong>Новая шутка от котика:</strong><br>
+                        ${randomJoke}
+                    </div>
+                `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+
+        // Функция показа модального окна с котиком для рекламы
+        function showCatModal() {
+            document.getElementById('catModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Восстанавливаем стандартное содержимое
+            document.querySelector('#catModal .message-content h3').textContent = 'Мяу... серьёзно? 🐱';
+            document.querySelector('#catModal .message-content p').innerHTML =
+                'Хотите мерч с котиком? А кто его делать будет? Я? Я же сплю 20 часов в сутки!';
+            document.querySelector('#catModal .cat-thought span').textContent = 'Очередной человеческий запрос... мррр...';
+        }
+
+        // Функция подписки на рассылку (шутка)
+        function subscribeNewsletter() {
+            const emailInput = document.getElementById('newsletterEmail');
+            const email = emailInput.value.trim();
+
+            if (!email || !email.includes('@')) {
+                // Создаем уведомление
+                const notification = document.createElement('div');
+                notification.className = 'notification notification-warning';
+                notification.innerHTML = `
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Введите настоящий email, мяу!</span>
+                    `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => notification.classList.add('show'), 10);
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+                return;
+            }
+
+            // Шуточное уведомление
+            const notification = document.createElement('div');
+            notification.className = 'notification notification-info';
+            notification.innerHTML = `
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Подписка "оформлена":</strong><br>
+                        Ты серьезно думаешь, что мы будем рассылать письма на почту? Ты из какого, мур века?
+                    </div>
+                `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+
+            // Лог в консоль
+            console.log('%c📧 ФИКТИВНАЯ ПОДПИСКА НА РАССЫЛКУ', 'color: #ff6b9d; font-size: 16px; font-weight: bold;');
+            console.log(`%cEmail: ${email}`, 'color: #666;');
+            console.log('%cСтатус: Котик проигнорировал запрос и пошел спать', 'color: #666;');
+
+            emailInput.value = '';
+
+            // Визуальный фидбэк
+            const subscribeBtn = document.querySelector('.newsletter-form button');
+            const originalHTML = subscribeBtn.innerHTML;
+            subscribeBtn.innerHTML = '<i class="fas fa-check"></i> Шутка принята!';
+            subscribeBtn.style.background = 'var(--success-color)';
+
+            setTimeout(() => {
+                subscribeBtn.innerHTML = originalHTML;
+                subscribeBtn.style.background = '';
+            }, 3000);
+        }
+
+        // Обработчики модальных окон
+        document.getElementById('closeCatModal')?.addEventListener('click', function () {
+            document.getElementById('catModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        document.getElementById('understandCatBtn')?.addEventListener('click', function () {
+            document.getElementById('catModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+            // Создаем уведомление
+            const notification = document.createElement('div');
+            notification.className = 'notification notification-success';
+            notification.innerHTML = `
+                    <i class="fas fa-heart"></i>
+                    <span>Котик доволен вашим пониманием! Мяу!</span>
+                `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => notification.classList.add('show'), 10);
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        });
+
+        // Закрытие по клику вне окна
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Закрытие по ESC
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Мобильное меню
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function () {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Переключение темы
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Убираем активный класс у всех кнопок
+                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+                // Добавляем активный класс текущей кнопке
+                this.classList.add('active');
+
+                const theme = this.getAttribute('data-theme');
+                document.body.className = theme + '-theme';
+
+                // Сохраняем тему в localStorage
+                localStorage.setItem('theme', theme);
+
+                // Меняем лого в зависимости от темы
+                const themeLogo = document.getElementById('themeLogo');
+                if (themeLogo) {
+                    if (theme === 'dark') {
+                        themeLogo.className = 'fas fa-moon';
+                    } else if (theme === 'anime') {
+                        themeLogo.className = 'fas fa-heart';
+                    } else {
+                        themeLogo.className = 'fas fa-sun';
+                    }
+                }
+
+                // Показываем уведомление
+                const themeNames = {
+                    'light': 'Светлая тема',
+                    'dark': 'Тёмная тема',
+                    'anime': 'Аниме тема'
+                };
+
+                const notification = document.createElement('div');
+                notification.className = 'notification notification-info';
+                notification.innerHTML = `
+                        <i class="fas fa-palette"></i>
+                        <span>Тема изменена на: ${themeNames[theme]}</span>
+                    `;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => notification.classList.add('show'), 10);
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            });
+        });
+
+        // Загрузка сохраненной темы
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const themeBtn = document.querySelector(`.theme-btn[data-theme="${savedTheme}"]`);
+
+            if (themeBtn) {
+                themeBtn.click();
+            }
+        });
+    </script>
+</body>
+</html>

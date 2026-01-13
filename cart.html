@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Корзина товаров | AniManga Paradise</title>
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+    <!-- Иконки и шрифты -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body class="light-theme">
+
+    <!-- Контейнер для уведомлений -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Анимированные фоны -->
+    <div class="background-animation light-background" id="backgroundAnimation"></div>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-sun" id="themeLogo"></i>
+                </div>
+                <h1 class="site-name">AniManga Paradise</h1>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="catalog.html" class="nav-link">
+                    <i class="fas fa-book"></i> Каталог
+                </a>
+                <a href="news.html" class="nav-link">
+                    <i class="fas fa-newspaper"></i> Новости
+                </a>
+                <a href="merch.html" class="nav-link">
+                    <i class="fas fa-tshirt"></i> Мерч
+                </a>
+                <a href="forum.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Форум
+                </a>
+            </nav>
+
+            <!-- Блок иконок в горизонтальном виде -->
+            <div class="header-icons-container">
+                <div class="icon-with-badge">
+                    <a href="cart.html" class="icon-btn cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="icon-badge cart-count">3</span>
+                        <span class="icon-tooltip">Корзина</span>
+                    </a>
+                </div>
+                <div class="icon-with-badge">
+                    <a href="profile.html" class="icon-btn profile-icon">
+                        <i class="fas fa-user"></i>
+                        <span class="icon-tooltip">Профиль</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" data-theme="light" title="Светлая тема">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="dark" title="Темная тема">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="anime" title="Аниме тема">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+            <span><i class="fas fa-chevron-right"></i></span>
+            <a href="cart.html" class="active">Корзина</a>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="cart-main">
+        <div class="container">
+            <div class="cart-header">
+                <h1 class="cart-title">
+                    <i class="fas fa-shopping-cart"></i> Ваша корзина
+                    <span class="cart-count-badge">0</span>
+                </h1>
+                <p class="cart-subtitle">Здесь собраны все выбранные вами товары. Проверьте заказ перед оформлением!</p>
+
+                <!-- Кнопка очистки корзины -->
+                <button class="btn-secondary clear-cart-btn" id="clearCartBtn">
+                    <i class="fas fa-trash"></i> Очистить корзину
+                </button>
+            </div>
+
+            <div class="cart-container">
+                <!-- Левая колонка: товары в корзине -->
+                <div class="cart-items">
+                    <div class="cart-items-container">
+                        <div class="cart-items-list" id="cartItemsList">
+                            <!-- Товары будут добавляться динамически -->
+                        </div>
+
+                        <!-- Промокоды -->
+                        <div class="promo-section">
+                            <h3 class="promo-title">
+                                <i class="fas fa-gift"></i> Промокоды и скидки
+                            </h3>
+                            <div class="promo-input-group">
+                                <input type="text" class="promo-input" placeholder="Введите промокод" id="promoInput">
+                                <button class="btn-primary apply-promo" id="applyPromoBtn">
+                                    <i class="fas fa-magic"></i> Применить
+                                </button>
+                            </div>
+
+                            <div class="active-promocodes" id="activePromocodes">
+                                <!-- Активные промокоды будут добавляться динамически -->
+                            </div>
+
+                            <div class="available-promocodes">
+                                <h4>Доступные промокоды:</h4>
+                                <div class="promo-list" id="availablePromocodes">
+                                    <!-- Промокоды будут добавляться динамически -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка: итого и оформление -->
+                <div class="order-summary">
+                    <h3 class="summary-title">
+                        <i class="fas fa-receipt"></i> Итого
+                    </h3>
+
+                    <div class="summary-details" id="orderSummary">
+                        <div class="summary-row">
+                            <span>Товары (<span id="totalItems">0</span>)</span>
+                            <span id="subtotal">0 ₽</span>
+                        </div>
+                        <div class="summary-row" id="discountRow" style="display: none;">
+                            <span>Скидка</span>
+                            <span class="discount" id="discountAmount">0 ₽</span>
+                        </div>
+                        <div class="summary-row" id="shippingRow">
+                            <span>Доставка</span>
+                            <span id="shippingCost">0 ₽</span>
+                        </div>
+                        <div class="summary-divider"></div>
+                        <div class="summary-row total">
+                            <strong>К оплате</strong>
+                            <strong id="totalAmount">0 ₽</strong>
+                        </div>
+                    </div>
+
+                    <!-- Доставка -->
+                    <div class="delivery-options">
+                        <h4 class="section-title-small">
+                            <i class="fas fa-shipping-fast"></i> Доставка
+                        </h4>
+                        <div class="delivery-options-list" id="deliveryOptions">
+                            <!-- Опции доставки будут добавляться динамически -->
+                        </div>
+                    </div>
+
+                    <!-- Оплата -->
+                    <div class="payment-options">
+                        <h4 class="section-title-small">
+                            <i class="fas fa-credit-card"></i> Способ оплаты
+                        </h4>
+                        <div class="payment-methods" id="paymentMethods">
+                            <!-- Способы оплаты будут добавляться динамически -->
+                        </div>
+                    </div>
+
+                    <!-- Форма оформления заказа -->
+                    <div class="order-form">
+                        <h4 class="section-title-small">
+                            <i class="fas fa-user-circle"></i> Данные для заказа
+                        </h4>
+                        <form id="orderForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">Имя *</label>
+                                    <input type="text" id="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Фамилия</label>
+                                    <input type="text" id="lastName">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Телефон *</label>
+                                <input type="tel" id="phone" placeholder="+7 (999) 999-99-99" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" placeholder="ваш@email.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="address">Адрес доставки</label>
+                                <textarea id="address" rows="2" placeholder="Город, улица, дом, квартира"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="comment">Комментарий к заказу</label>
+                                <textarea id="comment" rows="2" placeholder="Особые пожелания"></textarea>
+                            </div>
+
+                            <div class="form-agreement">
+                                <label>
+                                    <input type="checkbox" required>
+                                    <span>Я согласен с <a href="#">условиями обработки персональных данных</a> и <a href="#">правилами магазина</a></span>
+                                </label>
+                            </div>
+
+                            <button type="button" class="submit-order-btn" id="submitOrderBtn">
+                                <i class="fas fa-lock"></i> Оформить заказ
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Информационные карточки -->
+            <div class="cart-info">
+                <div class="info-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h4>Безопасная оплата</h4>
+                        <p>Ваши платежные данные защищены SSL-шифрованием</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-undo-alt"></i>
+                    <div>
+                        <h4>Возврат в течение 14 дней</h4>
+                        <p>Вы можете вернуть товар в течение двух недель после получения</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-headset"></i>
+                    <div>
+                        <h4>Поддержка 24/7</h4>
+                        <p>Наша служба поддержки всегда готова ответить на ваши вопросы</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <h4>Подарки к каждому заказу</h4>
+                        <p>Стикеры, открытки и другие приятные бонусы</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Рекламный баннер -->
+            <div class="cart-ad-banner">
+                <div class="cart-ad-content">
+                    <h2 class="cart-ad-title">
+                        <i class="fas fa-star"></i> Эксклюзивная акция!
+                        <i class="fas fa-star"></i>
+                    </h2>
+                    <p class="cart-ad-subtitle">При заказе от 3000₽ получите эксклюзивный набор наклеек с любимыми персонажами в подарок!</p>
+                    <div class="cart-ad-features">
+                        <div class="cart-ad-feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Бесплатная доставка</span>
+                        </div>
+                        <div class="cart-ad-feature">
+                            <i class="fas fa-gift"></i>
+                            <span>Подарки к заказу</span>
+                        </div>
+                        <div class="cart-ad-feature">
+                            <i class="fas fa-tag"></i>
+                            <span>Скидка 10% новичкам</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" style="background: white; color: var(--accent-color);">
+                        <i class="fas fa-fire"></i> Узнать подробности
+                    </button>
+                </div>
+            </div>
+
+            <!-- Рекомендуемые товары -->
+            <div class="recommended-section">
+                <h3 class="recommended-title">
+                    <i class="fas fa-heart"></i> С этим часто покупают
+                </h3>
+
+                <div class="recommended-grid" id="recommendedProducts">
+                    <!-- Рекомендуемые товары будут добавляться динамически -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-hashtag"></i> Социальные сети</h3>
+                <div class="social-links">
+                    <a href="https://vk.com/animangaparadise" class="social-link vk" target="_blank">
+                        <i class="fab fa-vk"></i> VKontakte
+                    </a>
+                    <a href="https://t.me/animangaparadise" class="social-link telegram" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="https://instagram.com/animangaparadise" class="social-link instagram" target="_blank">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://youtube.com/@animangaparadise" class="social-link youtube" target="_blank">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-question-circle"></i> Помощь</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Доставка и оплата</a></li>
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Возврат товара</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Частые вопросы</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Техническая поддержка</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> О нас</h3>
+                <p>AniManga Paradise - магазин для настоящих фанатов аниме, манги и комиксов. Мы предлагаем широкий выбор товаров и мерча по самым популярным фандомам.</p>
+                <div class="newsletter">
+                    <h4>Подпишись на новости:</h4>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" id="newsletterEmail">
+                        <button class="btn-secondary" id="subscribeBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+                <i class="fas fa-credit-card" title="Наличные"></i>
+                <i class="fas fa-fish" title="Рыбкой"></i>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 AniManga Paradise. Все права защищены.</p>
+                <p class="made-with">
+                    <i class="fas fa-heart"></i> Сделано с любовью для фанатов аниме <i class="fas fa-heart"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно с котиком -->
+    <div class="modal cat-modal" id="catModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCatModal">&times;</button>
+            <div class="cat-content">
+                <div class="cat-image">
+                    <img src="https://media.tenor.com/4ZKc7WdhpCgAAAAi/sleepy-cat.gif" alt="Сонный котик">
+                </div>
+                <div class="cat-text">
+                    <h2>Мяу-у-у... 😴</h2>
+                    <p>Котик-администратор сейчас спит и не может обработать ваш заказ.</p>
+                    <p>Это учебный проект, и мы не принимаем реальные платежи. Мы не мошенники и не хотим брать ваши деньги за несуществующие товары!</p>
+                    <p>Но вы можете продолжить изучение нашего магазина, добавить товары в корзину и потренироваться в оформлении заказа. А когда проект будет готов, мы обязательно вас уведомим!</p>
+                    <p class="cat-signature">*Мурлыкающие звуки*<br>Ваш верный котик-админ 🐱</p>
+                </div>
+                <div class="cat-actions">
+                    <button class="btn-primary" id="continueShoppingBtn">
+                        <i class="fas fa-shopping-bag"></i> Продолжить покупки
+                    </button>
+                    <button class="btn-secondary" id="closeModalBtn">
+                        <i class="fas fa-times"></i> Закрыть
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог манги и комиксов | AniManga Paradise</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <!-- Анимированный фон -->
+    <div class="background-animation light-background" id="backgroundAnimation"></div>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-sun" id="themeLogo"></i>
+                </div>
+                <h1 class="site-name">AniManga Paradise</h1>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="catalog.html" class="nav-link">
+                    <i class="fas fa-book"></i> Каталог
+                </a>
+                <a href="news.html" class="nav-link">
+                    <i class="fas fa-newspaper"></i> Новости
+                </a>
+                <a href="merch.html" class="nav-link">
+                    <i class="fas fa-tshirt"></i> Мерч
+                </a>
+                <a href="forum.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Форум
+                </a>
+            </nav>
+
+            <!-- Блок иконок в горизонтальном виде -->
+            <div class="header-icons-container">
+                <div class="icon-with-badge">
+                    <a href="cart.html" class="icon-btn cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="icon-badge cart-count">3</span>
+                        <span class="icon-tooltip">Корзина</span>
+                    </a>
+                </div>
+                <div class="icon-with-badge">
+                    <a href="profile.html" class="icon-btn profile-icon">
+                        <i class="fas fa-user"></i>
+                        <span class="icon-tooltip">Профиль</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="light" title="Светлая тема">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="dark" title="Темная тема">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="anime" title="Аниме тема">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="catalog-page">
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+            <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+            <span>/</span>
+            <span class="current">Каталог манги</span>
+        </div>
+
+        <!-- Приветственное сообщение -->
+        <div class="catalog-header">
+            <h1><i class="fas fa-book-open"></i> Каталог манги и комиксов</h1>
+            <p class="catalog-subtitle">Более 5000 наименований манги, манхвы, маньхуа и комиксов. Находите свои любимые истории!</p>
+
+            <!-- Быстрые фильтры -->
+            <div class="type-toggle">
+                <button class="type-btn active" data-type="all">Все товары</button>
+                <button class="type-btn" data-type="manga">Манга</button>
+                <button class="type-btn" data-type="manhwa">Манхва</button>
+                <button class="type-btn" data-type="manhua">Маньхуа</button>
+                <button class="type-btn" data-type="comics">Комиксы</button>
+            </div>
+        </div>
+
+        <!-- Рекламный баннер -->
+        <div class="ad-banner">
+            <div class="ad-content">
+                <div class="ad-text">
+                    <h3><i class="fas fa-gift"></i> Специальное предложение!</h3>
+                    <p>При заказе от 3-х товаров - скидка 15% + бесплатная доставка</p>
+                </div>
+                <button class="btn-primary ad-btn" id="adDetailsBtn">
+                    <i class="fas fa-info-circle"></i> Подробнее
+                </button>
+            </div>
+        </div>
+
+        <div class="catalog-container">
+            <!-- Панель фильтров -->
+            <aside class="filters-panel">
+                <div class="filters-header">
+                    <h3><i class="fas fa-filter"></i> Фильтры</h3>
+                    <button class="clear-filters" id="clearFilters">
+                        <i class="fas fa-times"></i> Очистить
+                    </button>
+                </div>
+
+                <!-- Поиск -->
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <i class="fas fa-search"></i> Поиск
+                    </div>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Название или автор...">
+                        <button class="search-btn" id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Жанры -->
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <i class="fas fa-tags"></i> Жанры
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="genre-action" value="экшен" checked>
+                            <label for="genre-action">Экшен</label>
+                            <span class="filter-count">156</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="genre-fantasy" value="фэнтези">
+                            <label for="genre-fantasy">Фэнтези</label>
+                            <span class="filter-count">89</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="genre-romance" value="романтика">
+                            <label for="genre-romance">Романтика</label>
+                            <span class="filter-count">67</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="genre-comedy" value="комедия">
+                            <label for="genre-comedy">Комедия</label>
+                            <span class="filter-count">54</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="genre-drama" value="драма">
+                            <label for="genre-drama">Драма</label>
+                            <span class="filter-count">43</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="genre-mystery" value="мистика">
+                            <label for="genre-mystery">Мистика</label>
+                            <span class="filter-count">38</span>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="genre-isekai" value="исекай">
+                            <label for="genre-isekai">Исекай</label>
+                            <span class="filter-count">45</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Цена -->
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <i class="fas fa-tag"></i> Цена
+                    </div>
+                    <div class="price-filter">
+                        <div class="price-inputs">
+                            <div class="price-input">
+                                <input type="number" id="priceMin" placeholder="0" min="0" max="10000">
+                            </div>
+                            <span class="price-separator">-</span>
+                            <div class="price-input">
+                                <input type="number" id="priceMax" placeholder="10000" min="0" max="10000">
+                            </div>
+                        </div>
+                        <div class="price-slider">
+                            <input type="range" id="priceRangeMin" min="0" max="10000" value="0" step="100">
+                            <input type="range" id="priceRangeMax" min="0" max="10000" value="10000" step="100">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Возрастной рейтинг -->
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <i class="fas fa-user"></i> Возрастной рейтинг
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="age-12" value="12+" checked>
+                            <label for="age-12">12+</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="age-16" value="16+">
+                            <label for="age-16">16+</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="age-18" value="18+">
+                            <label for="age-18">18+</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Статус -->
+                <div class="filter-group">
+                    <div class="filter-title">
+                        <i class="fas fa-calendar"></i> Статус
+                    </div>
+                    <div class="filter-options">
+                        <div class="filter-option">
+                            <input type="checkbox" id="status-released" value="вышел" checked>
+                            <label for="status-released">Вышел</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="status-ongoing" value="выпускается">
+                            <label for="status-ongoing">Выпускается</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" id="status-announced" value="анонс">
+                            <label for="status-announced">Анонс</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn-primary" id="applyFilters">
+                        <i class="fas fa-check"></i> Применить
+                    </button>
+                    <button class="btn-secondary" id="resetFilters">
+                        <i class="fas fa-redo"></i> Сбросить
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Основная область с товарами -->
+            <section class="products-area">
+                <!-- Панель сортировки -->
+                <div class="sort-panel">
+                    <div class="sort-options">
+                        <span class="sort-label">Сортировать:</span>
+                        <select class="sort-select" id="sortSelect">
+                            <option value="popular">По популярности</option>
+                            <option value="new">Новинки</option>
+                            <option value="price-low">Сначала дешевые</option>
+                            <option value="price-high">Сначала дорогие</option>
+                            <option value="rating">По рейтингу</option>
+                            <option value="name">По названию</option>
+                        </select>
+                    </div>
+                    <div class="products-count" id="productsCount">Найдено 24 товара</div>
+                </div>
+
+                <!-- Сетка товаров -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- Товары будут загружаться через JS -->
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination">
+                    <button class="page-btn prev disabled" id="prevPage">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-numbers" id="pageNumbers">
+                        <button class="page-number active">1</button>
+                        <button class="page-number">2</button>
+                        <button class="page-number">3</button>
+                        <button class="page-number">4</button>
+                        <button class="page-number">5</button>
+                    </div>
+                    <button class="page-btn next" id="nextPage">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Информация о доставке -->
+                <div class="info-section">
+                    <div class="info-card">
+                        <i class="fas fa-shipping-fast"></i>
+                        <div>
+                            <h4>Бесплатная доставка</h4>
+                            <p>При заказе от 2000₽ по всей России</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <h4>Поддержка 24/7</h4>
+                            <p>Поможем с выбором и оформлением</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-undo-alt"></i>
+                        <div>
+                            <h4>Возврат 14 дней</h4>
+                            <p>Легкий возврат при сохранении товарного вида</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-hashtag"></i> Социальные сети</h3>
+                <div class="social-links">
+                    <a href="https://vk.com/animanga_paradise" target="_blank" class="social-link vk">
+                        <i class="fab fa-vk"></i> VKontakte
+                    </a>
+                    <a href="https://t.me/animanga_paradise" target="_blank" class="social-link telegram">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="https://instagram.com/animanga_paradise" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://youtube.com/@animanga_paradise" target="_blank" class="social-link youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-question-circle"></i> Помощь</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Доставка и оплата</a></li>
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Возврат товара</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Частые вопросы</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Поддержка 24/7</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> О магазине</h3>
+                <p>AniManga Paradise - крупнейший магазин аниме, манги и мерча в России. Мы работаем с 2015 года и предлагаем только оригинальную продукцию.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Мира 82, Красноярск</p>
+                    <p><i class="fas fa-phone"></i> +7 (391) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@animanga.ru</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+                <i class="fas fa-credit-card" title="Наличные"></i>
+                <i class="fas fa-fish" title="Рыбкой"></i>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2015-2026 AniManga Paradise. Все права защищены.</p>
+                <p class="made-with">
+                    <i class="fas fa-heart"></i> Сделано с любовью для фанатов аниме
+                    <i class="fas fa-heart"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Кнопка наверх -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Контейнер для уведомлений -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="js/catalog.js"></script>
+    <script src="js/theme-switcher.js"></script>
+</body>
+</html>

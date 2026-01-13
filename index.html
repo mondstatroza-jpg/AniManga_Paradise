@@ -1,0 +1,1133 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AniManga Paradise - Магазин аниме, манги и мерча</title>
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/home-banners.css">
+    <!-- Специальные стили для главной страницы -->
+    <link rel="stylesheet" href="css/home.css">
+
+    <!-- Иконки и шрифты -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <script src="utils.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body class="light-theme">
+
+    <!-- Контейнер для уведомлений -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Анимированные фоны -->
+    <div class="background-animation light-background" id="backgroundAnimation"></div>
+
+    <!-- Модальные окна -->
+    <!-- Модальное окно для авторизации -->
+    <div class="modal auth-modal" id="authModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeAuthModal">&times;</button>
+            <h2 class="modal-title">Приветствуем в нашем отряде! 🌸</h2>
+            <div class="auth-content">
+                <div class="auth-image">
+                    <img src="images/vqdk686rg4i86qr5g1b9.gif" alt="Аниме котик приветствует">
+                </div>
+                <div class="auth-form">
+                    <p class="welcome-text">Присоединяйся к нашему сообществу фанатов аниме! Получай эксклюзивные предложения, участвуй в розыгрышах и будь первым, кто узнает о новинках!</p>
+                    <form id="authForm">
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" placeholder="ваш@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password"><i class="fas fa-lock"></i> Пароль</label>
+                            <input type="password" id="password" placeholder="Минимум 6 символов" required>
+                        </div>
+                        <div class="form-options">
+                            <label class="checkbox">
+                                <input type="checkbox" id="remember">
+                                <span>Запомнить меня</span>
+                            </label>
+                            <a href="#" class="forgot-password">Забыли пароль?</a>
+                        </div>
+                        <button type="submit" class="btn-primary auth-submit">
+                            <i class="fas fa-user-plus"></i> Вступить в отряд!
+                        </button>
+                        <div class="social-auth">
+                            <p>Или войти через:</p>
+                            <div class="social-buttons">
+                                <button type="button" class="social-btn vk" id="vkLogin">
+                                    <i class="fab fa-vk"></i> ВКонтакте
+                                </button>
+                                <button type="button" class="social-btn telegram" id="telegramLogin">
+                                    <i class="fab fa-telegram"></i> Telegram
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно "Ошибка регистрации" -->
+    <div class="modal error-modal" id="errorModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeErrorModal">&times;</button>
+            <div class="error-content">
+                <div class="error-image">
+                    <img src="https://cs5.pikabu.ru/post_img/2015/06/27/1/1435356760_1576064551.gif" alt="Плачущий котик">
+                </div>
+                <div class="error-text">
+                    <h2>Мурзвините... 🐾</h2>
+                    <p>Сейчас данная функция не поддерживается, но следите за развитием сайта на наших аккаунтах в социальных сетях и скоро мы уведомим вас о такой возможности, если данная работа пойдет на диплом.</p>
+                    <p class="cat-signature">Мяу. <br>*Картинка котика*</p>
+                    <div class="error-actions">
+                        <a href="https://vk.com/animangaparadise" class="btn-primary" target="_blank">Перейти в VK</a>
+                        <a href="https://t.me/animangaparadise" class="btn-secondary" target="_blank">Перейти в Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно кофейни -->
+    <div class="modal coffee-modal" id="coffeeModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeCoffeeModal">&times;</button>
+            <div class="coffee-content">
+                <div class="coffee-image">
+                    <img src="https://i.pinimg.com/originals/14/2b/f1/142bf1641eba95edb278076e725e0e4b.gif" alt="Котик-бариста">
+                </div>
+                <div class="coffee-text">
+                    <h2>Настало время замурчательной коллаборации! 🐱☕</h2>
+                    <p>Мы будем мяу как рады видеть вас в кофейне, ведь там обитает не только дух нашего магазина, но и сама атмосфера магии наших любимых фандомов.</p>
+                    <p>Чтобы узнать больше, переходите на наши соц.страницы!</p>
+                    <div class="coffee-social">
+                        <a href="https://vk.com/animangaparadise" class="social-link vk" target="_blank">
+                            <i class="fab fa-vk"></i> VKontakte
+                        </a>
+                        <a href="https://t.me/animangaparadise" class="social-link telegram" target="_blank">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </a>
+                        <a href="https://instagram.com/animangaparadise" class="social-link instagram" target="_blank">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                    <p class="cat-ps">Мяу! Не забудьте попробовать наш фирменный кофе "Мурчальный латте"! 🐾</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-sun" id="themeLogo"></i>
+                </div>
+                <h1 class="site-name">AniManga Paradise</h1>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="catalog.html" class="nav-link">
+                    <i class="fas fa-book"></i> Каталог
+                </a>
+                <a href="news.html" class="nav-link">
+                    <i class="fas fa-newspaper"></i> Новости
+                </a>
+                <a href="merch.html" class="nav-link">
+                    <i class="fas fa-tshirt"></i> Мерч
+                </a>
+                <a href="forum.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Форум
+                </a>
+            </nav>
+
+            <!-- Блок иконок в горизонтальном виде -->
+            <div class="header-icons-container">
+                <div class="icon-with-badge">
+                    <a href="cart.html" class="icon-btn cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="icon-badge cart-count">3</span>
+                        <span class="icon-tooltip">Корзина</span>
+                    </a>
+                </div>
+                <div class="icon-with-badge">
+                    <a href="profile.html" class="icon-btn profile-icon">
+                        <i class="fas fa-user"></i>
+                        <span class="icon-tooltip">Профиль</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="light" title="Светлая тема">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="dark" title="Темная тема">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="anime" title="Аниме тема">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main>
+        <!-- Приветственная секция -->
+        <section class="section welcome-section">
+            <div class="welcome-content">
+                <div class="welcome-cat">
+                    <img src="images/guvilhh63itj6bf7h6eu.gif" alt="Милый котик аниме стиля">
+                    <div class="cat-bubble">
+                        <i class="fas fa-heart"></i> Привет! Я ваш аниме-гид!
+                    </div>
+                </div>
+                <div class="welcome-text">
+                    <h1>Добро пожаловать в мир аниме и манги! 🌸</h1>
+                    <p class="welcome-description">Мы предлагаем самую большую коллекцию манги, аниме-мерча и товаров для фанатов. Окунитесь в мир захватывающих историй и любимых персонажей!</p>
+                    <div class="welcome-features">
+                        <div class="feature">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Бесплатная доставка от 2000₽</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-gift"></i>
+                            <span>Подарки к каждому заказу</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-certificate"></i>
+                            <span>100% оригинальная продукция</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary welcome-cta" id="joinTeamBtn">
+                        <i class="fas fa-users"></i> Присоединиться к нашему отряду!
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- БАННЕР 1: КАРТОЧКА МАГАЗИНА -->
+        <section class="shop-banner">
+            <div class="shop-content">
+                <h1><i class="fas fa-store"></i> AniManga Paradise</h1>
+                <p class="shop-description">
+                    Крупнейший магазин аниме, манги и эксклюзивного мерча в России.
+                    Более 5000 товаров для настоящих фанатов японской культуры!
+                </p>
+
+                <div class="shop-features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Бесплатная доставка</h4>
+                            <p>От 2000₽ по всей России</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>100% оригинал</h4>
+                            <p>Лицензионная продукция</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Подарки к заказу</h4>
+                            <p>Стикеры и открытки</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="catalog.html" class="shop-button">
+                    <i class="fas fa-book"></i> Перейти в каталог
+                </a>
+            </div>
+
+            <div class="shop-image">
+                <img src="images/shop-hero.jpg" alt="Магазин аниме"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/4a6fa5/ffffff?text=ANIMANGA+SHOP'">
+            </div>
+        </section>
+
+        <!-- БАННЕР 2: НОВИНКА И СКИДКА -->
+        <section class="discount-banner">
+            <div class="discount-content">
+                <span class="discount-badge">
+                    <i class="fas fa-fire"></i> АКЦИЯ ДНЯ
+                </span>
+
+                <h2 class="discount-title">
+                    <i class="fas fa-book"></i> КОЛЛЕКЦИОННОЕ ИЗДАНИЕ<br>
+                    "ЧЕЛОВЕК-БЕНЗОПИЛА"
+                </h2>
+
+                <p class="discount-description">
+                    Ограниченный тираж манги с автографом автора Тацуки Фудзимото!
+                    Включает эксклюзивные арты и дополнительную главу.
+                </p>
+
+                <div class="discount-price">
+                    <span class="original-price">3,499 ₽</span>
+                    <span class="final-price">2,799 ₽</span>
+                    <span class="discount-percent">-20%</span>
+                </div>
+
+                <!-- ТАЙМЕР АКЦИИ -->
+                <div class="sale-timer">
+                    <h4><i class="fas fa-clock"></i> До конца акции осталось:</h4>
+                    <div class="timer-container">
+                        <div class="timer-item">
+                            <span class="timer-value" id="days">03</span>
+                            <span class="timer-label">дней</span>
+                        </div>
+                        <div class="timer-item">
+                            <span class="timer-value" id="hours">12</span>
+                            <span class="timer-label">часов</span>
+                        </div>
+                        <div class="timer-item">
+                            <span class="timer-value" id="minutes">45</span>
+                            <span class="timer-label">минут</span>
+                        </div>
+                        <div class="timer-item">
+                            <span class="timer-value" id="seconds">30</span>
+                            <span class="timer-label">секунд</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="catalog.html" class="discount-button">
+                    <i class="fas fa-shopping-cart"></i> Купить со скидкой
+                </a>
+            </div>
+
+            <div class="discount-image">
+                <img src="https://basket-26.wbbasket.ru/vol4845/part484511/484511783/images/big/1.webp"
+                     alt="Арт Человек-бензопила"
+                     onerror="this.onerror=null; this.src='https://via.placeholder.com/600x400/ff6b6b/ffffff?text=ЧЕЛОВЕК-БЕНЗОПИЛА+Арт'">
+            </div>
+        </section>
+        <!-- ТАЙМЕР АКЦИИ -->
+        <script>
+            // Таймер обратного отсчета
+            function updateTimer() {
+                const now = new Date();
+                // Устанавливаем дату окончания акции (3 дня от текущего момента)
+                const endDate = new Date(now.getTime() + (3 * 24 * 60 * 60 * 1000));
+
+                const timeLeft = endDate - now;
+
+                if (timeLeft <= 0) {
+                    // Акция завершилась
+                    document.querySelector('.timer-container').innerHTML =
+                        '<div class="sale-ended">Акция завершена!</div>';
+                    return;
+                }
+
+                // Рассчитываем дни, часы, минуты, секунды
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                // Обновляем значения на странице
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+
+            // Обновляем таймер каждую секунду
+            setInterval(updateTimer, 1000);
+
+            // Запускаем таймер сразу
+            updateTimer();
+        </script>
+
+        <!-- Подключаем переключатель тем (если есть в проекте) -->
+        <script src="js/theme-switcher.js"></script>
+
+        <!-- Блок "СКОРО!" в красивой рамке -->
+        <section class="section soon-release-section">
+            <div class="soon-release-frame">
+                <div class="soon-release-badge">
+                    <i class="fas fa-fire"></i> СКОРО!
+                </div>
+                <h2 class="soon-release-title">КОЛЛЕКЦИОННОЕ ИЗДАНИЕ "НАРУТО" С АВТОГРАФОМ МАСАСИ КИШИМОТО!</h2>
+                <p class="soon-release-description">Предзаказ уже открыт! Успейте забронировать эксклюзивный экземпляр!</p>
+                <div class="soon-release-features">
+                    <div class="soon-release-feature">
+                        <i class="fas fa-star"></i>
+                        <span>Ограниченный тираж</span>
+                    </div>
+                    <div class="soon-release-feature">
+                        <i class="fas fa-signature"></i>
+                        <span>Автограф автора</span>
+                    </div>
+                    <div class="soon-release-feature">
+                        <i class="fas fa-gift"></i>
+                        <span>Эксклюзивный футляр</span>
+                    </div>
+                </div>
+                <button class="btn-primary soon-release-btn" onclick="window.location.href='catalog.html'">
+                    <i class="fas fa-star"></i> Перейти к предзаказу
+                </button>
+            </div>
+        </section>
+
+        <!-- Акции и предложения -->
+        <section class="section">
+            <h2 class="section-title">
+                <i class="fas fa-percentage"></i>
+                Акции и предложения
+            </h2>
+            <div class="promo-grid">
+                <div class="promo-card">
+                    <img src="https://i.pinimg.com/736x/bf/98/95/bf98951f5eba9173cf87b028b62eb45d.jpg" alt="Скидка на мангу">
+                    <div class="promo-content">
+                        <h3 class="promo-title">Скидка 20% на все манги</h3>
+                        <p>Только до конца месяца! Успейте пополнить свою коллекцию.</p>
+                        <button class="btn-primary promo-btn open-promo-modal" data-modal="promoModal1">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <img src="https://i.pinimg.com/736x/8d/f9/52/8df9524e95a4255199d0f14bc800a084.jpg" alt="Бесплатная доставка">
+                    <div class="promo-content">
+                        <h3 class="promo-title">Бесплатная доставка</h3>
+                        <p>При заказе от 3000₽ - доставка по всей России бесплатно!</p>
+                        <button class="btn-primary promo-btn open-promo-modal" data-modal="promoModal2">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <img src="https://i.pinimg.com/originals/ea/46/ab/ea46ab8168196c99647c5d146436cbc1.jpg" alt="Подарок за покупку">
+                    <div class="promo-content">
+                        <h3 class="promo-title">Подарок к каждому заказу</h3>
+                        <p>Стикеры, закладки или брелок - выбирайте подарок сами!</p>
+                        <button class="btn-primary promo-btn open-promo-modal" data-modal="promoModal3">
+                            Подробнее
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Реклама кофейни -->
+        <section class="section coffee-ad-section">
+            <div class="coffee-ad-container">
+                <div class="coffee-ad-content">
+                    <h2 class="coffee-ad-title">☕ Аниме Кофейня "Chibi Cafe"</h2>
+                    <p class="coffee-ad-subtitle">Закажи кофейный завтрак с любимыми персонажами и получи эксклюзивный мерч!</p>
+                    <div class="coffee-ad-offers">
+                        <div class="coffee-ad-offer">
+                            <i class="fas fa-mug-hot"></i>
+                            <h3>Кофе "Слизь Римуру"</h3>
+                            <p>+ наклейки из "О моём перерождении в слизь"</p>
+                        </div>
+                        <div class="coffee-ad-offer">
+                            <i class="fas fa-cookie-bite"></i>
+                            <h3>Пирожные "Хвост Феи"</h3>
+                            <p>+ закладки с героями Fairy Tail</p>
+                        </div>
+                        <div class="coffee-ad-offer">
+                            <i class="fas fa-ice-cream"></i>
+                            <h3>Десерт "ZZZ Dream"</h3>
+                            <p>+ стикеры из игры Zenless Zone Zero</p>
+                        </div>
+                    </div>
+                    <button class="btn-primary coffee-ad-btn" id="coffeePromoBtn">
+                        <i class="fas fa-info-circle"></i> Узнать условия акции
+                    </button>
+                </div>
+                <div class="coffee-ad-image">
+                    <img src="https://i.pinimg.com/originals/8f/4a/6a/8f4a6a831f0689b0d8a6dee41dbcee2f.jpg" alt="Аниме кофейня">
+                </div>
+            </div>
+        </section>
+
+        <!-- Новости с аккордеоном -->
+        <section class="section news-section">
+            <h2 class="section-title">
+                <i class="fas fa-newspaper"></i>
+                Новости из мира аниме и манги
+            </h2>
+            <div class="news-accordion" id="newsAccordion">
+                <div class="news-item active">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <span class="news-date">15 марта 2024</span>
+                            <span class="news-category">Анонс</span>
+                        </div>
+                        <h3 class="news-title">Крупнейшая аниме-конвенция "AniFest 2024" пройдет в Москве!</h3>
+                        <span class="news-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-image">
+                            <img src="https://www.yugopolis.ru/wp-content/uploads/2025/05/img_20250518_145059_19-2048x1536.jpg" alt="Аниме конвенция">
+                            <span class="news-badge">Новое</span>
+                        </div>
+                        <div class="news-text">
+                            <p>Ежегодная конвенция соберет тысячи фанатов аниме, косплееров и художников. В этом году ожидаются специальные гости из Японии, включая известных сэйю и мангак.</p>
+                            <p>Место проведения: Москва, Крокус Экспо. Дата: 15-17 июня 2024 года.</p>
+                            <button class="btn-secondary">Читать полностью</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <span class="news-date">10 марта 2024</span>
+                            <span class="news-category">Релизы</span>
+                        </div>
+                        <h3 class="news-title">Новый сезон "Человека-бензопилы" выйдет осенью 2024</h3>
+                        <span class="news-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-image">
+                            <img src="https://avatars.mds.yandex.net/i?id=f1442dace2897e535285972842340c86_l-5646157-images-thumbs&n=13" alt="Новый сезон">
+                            <span class="news-badge">Скоро</span>
+                        </div>
+                        <div class="news-text">
+                            <p>Студия MAPPA анонсировала выход второго сезона самого популярного аниме года. Продолжение приключений Дэндзи и Почиты порадует фанатов новыми персонажами и сюжетными поворотами.</p>
+                            <button class="btn-secondary">Читать полностью</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <span class="news-date">5 марта 2024</span>
+                            <span class="news-category">Обзоры</span>
+                        </div>
+                        <h3 class="news-title">Выход нового тома "Моей геройской академии" побил рекорды продаж</h3>
+                        <span class="news-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-image">
+                            <img src="https://i.pinimg.com/originals/b4/11/62/b41162a6db19dba168d7831dde45f4e4.jpg" alt="Манга новинка">
+                            <span class="news-badge">Обзор</span>
+                        </div>
+                        <div class="news-text">
+                            <p>Том 35 разошелся тиражом в 2 миллиона копий за первую неделю. Это рекорд для франшизы. В новом томе продолжаются битвы за судьбу общества героев.</p>
+                            <button class="btn-secondary">Читать полностью</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <span class="news-date">20 марта 2024</span>
+                            <span class="news-category">Анонсы</span>
+                        </div>
+                        <h3 class="news-title">Новый проект Studio Ghibli анонсирован на 2025 год</h3>
+                        <span class="news-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-image">
+                            <img src="https://i.pinimg.com/736x/47/d5/7a/47d57ade870e4c38ff119fb885da2112.jpg" alt="Новый проект">
+                            <span class="news-badge">Анонс</span>
+                        </div>
+                        <div class="news-text">
+                            <p>Легендарная аниме-студия готовит новый полнометражный фильм в классическом стиле. Режиссером выступит Хаяо Миядзаки, вернувшийся из творческого отпуска.</p>
+                            <button class="btn-secondary">Читать полностью</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <span class="news-date">18 марта 2024</span>
+                            <span class="news-category">События</span>
+                        </div>
+                        <h3 class="news-title">Крупнейший косплей-фестиваль России пройдет в Санкт-Петербурге</h3>
+                        <span class="news-toggle"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-image">
+                            <img src="https://anime-conventions.ru/Frontend/images/convent_logos/year_2023/yusagi-fest-2023.jpg" alt="Косплей ивент">
+                            <span class="news-badge">Событие</span>
+                        </div>
+                        <div class="news-text">
+                            <p>Более 500 участников со всей страны представят свои работы в различных номинациях. Призовой фонд составит 1 миллион рублей.</p>
+                            <button class="btn-secondary">Читать полностью</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Арты и косплеи с навигацией -->
+        <section class="section gallery-section">
+            <h2 class="section-title">
+                <i class="fas fa-palette"></i>
+                Арты художников и косплеи
+            </h2>
+            <div class="double-gallery">
+                <!-- Арты художников -->
+                <div class="gallery-box">
+                    <h3 class="gallery-title">
+                        <i class="fas fa-paint-brush"></i>
+                        Арты художников
+                    </h3>
+                    <div class="gallery-container" id="artGallery">
+                        <div class="gallery-page active" data-page="1">
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/1200x/00/ee/6b/00ee6bea91e5a79b2e6c27945acb44e8.jpg" alt="Арт сакуры">
+                                <div class="gallery-overlay">
+                                    <h4>Сакура в цвету</h4>
+                                    <p>Художник: СакураDream</p>
+                                    <button class="btn-secondary view-artist" data-vk="sakuradream">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/1200x/d7/19/fb/d719fbcb23cbec4efa8615bb486efe61.jpg" alt="Аниме арт">
+                                <div class="gallery-overlay">
+                                    <h4>Городские огни</h4>
+                                    <p>Художник: NeoTokyo</p>
+                                    <button class="btn-secondary view-artist" data-vk="neotokyart">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-page" data-page="2">
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/f5/7c/d0/f57cd05c155dd6d3950bb09c7b9ff731.jpg" alt="Фэнтези арт">
+                                <div class="gallery-overlay">
+                                    <h4>Фэнтези мир</h4>
+                                    <p>Художник: MagicBrush</p>
+                                    <button class="btn-secondary view-artist" data-vk="magicbrush">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/17/9e/5a/179e5a4d0f661dd5f23318660b2b88db.jpg" alt="Аниме арт">
+                                <div class="gallery-overlay">
+                                    <h4>Манга стиль</h4>
+                                    <p>Художник: MangaStyle</p>
+                                    <button class="btn-secondary view-artist" data-vk="mangastyle">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-page" data-page="3">
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/d3/ec/c0/d3ecc0da52bc4601dc6c2718a50f701d.jpg" alt="Киберпанк арт">
+                                <div class="gallery-overlay">
+                                    <h4>Киберпанк город</h4>
+                                    <p>Художник: CyberArt</p>
+                                    <button class="btn-secondary view-artist" data-vk="cyberart">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Навигация для артов -->
+                    <div class="gallery-navigation">
+                        <button class="gallery-nav-btn prev" id="artPrev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="gallery-counter">
+                            <span id="artCurrentPage">1</span> / <span id="artTotalPages">3</span>
+                        </span>
+                        <button class="gallery-nav-btn next" id="artNext">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Косплеи -->
+                <div class="gallery-box">
+                    <h3 class="gallery-title">
+                        <i class="fas fa-camera"></i>
+                        Косплеи
+                    </h3>
+                    <div class="gallery-container" id="cosplayGallery">
+                        <div class="gallery-page active" data-page="1">
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/b1/49/fc/b149fcba3eac35ea86587c8d26d07af1.jpg" alt="Косплей Наруто">
+                                <div class="gallery-overlay">
+                                    <h4>Наруто Узумаки</h4>
+                                    <p>Косплеер: NaruChan</p>
+                                    <button class="btn-secondary view-artist" data-vk="naruchancosplay">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/5d/04/3b/5d043b82bcd88738a6896b04a5527e55.jpg" alt="Косплей Аниме">
+                                <div class="gallery-overlay">
+                                    <h4>Неизвестный герой</h4>
+                                    <p>Косплеер: MysteryCos</p>
+                                    <button class="btn-secondary view-artist" data-vk="mysterycos">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-page" data-page="2">
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/57/73/bc/5773bc206410a7a3d716fc8dca60e207.jpg" alt="Косплей Героя">
+                                <div class="gallery-overlay">
+                                    <h4>Аниме герой</h4>
+                                    <p>Косплеер: HeroStyle</p>
+                                    <button class="btn-secondary view-artist" data-vk="herostylerr">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/63/d0/4d/63d04d784a066236a7d528ccebb5f9df.jpg" alt="Косплей девушки">
+                                <div class="gallery-overlay">
+                                    <h4>Аниме героиня</h4>
+                                    <p>Косплеер: AnimeGirl</p>
+                                    <button class="btn-secondary view-artist" data-vk="animegirlcos">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-page" data-page="3">
+                            <div class="gallery-item">
+                                <img src="https://i.pinimg.com/736x/41/61/ed/4161edeb0d8514af9bfac84a175f49c3.jpg" alt="Косплей Саске">
+                                <div class="gallery-overlay">
+                                    <h4>Саске Учиха</h4>
+                                    <p>Косплеер: SasukeFan</p>
+                                    <button class="btn-secondary view-artist" data-vk="sasukefan">Написать автору в ВК</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Навигация для косплеев -->
+                    <div class="gallery-navigation">
+                        <button class="gallery-nav-btn prev" id="cosplayPrev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="gallery-counter">
+                            <span id="cosplayCurrentPage">1</span> / <span id="cosplayTotalPages">3</span>
+                        </span>
+                        <button class="gallery-nav-btn next" id="cosplayNext">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Как добраться -->
+        <section class="section contacts-section">
+            <h2 class="section-title">
+                <i class="fas fa-map-marked-alt"></i>
+                Как добраться
+            </h2>
+            <div class="contacts-content">
+                <div class="contacts-info">
+                    <div class="contact-card">
+                        <i class="fas fa-store"></i>
+                        <div>
+                            <h3>Наш магазин в Красноярске</h3>
+                            <p class="address"><i class="fas fa-map-marker-alt"></i> ул. Мира 82, Красноярск, Россия</p>
+                        </div>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Часы работы:</strong>
+                                <p>Пн-Пт: 10:00-20:00</p>
+                                <p>Сб-Вс: 11:00-18:00</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Телефон:</strong>
+                                <p>+7 (391) 123-45-67</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email:</strong>
+                                <p>info@animanga-paradise.ru</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transport-info">
+                        <h4>Как добраться:</h4>
+                        <ul>
+                            <li><i class="fas fa-bus"></i> Автобус: ост. "Улица Мира"</li>
+                            <li><i class="fas fa-subway"></i> Метро: станция "Площадь Мира"</li>
+                            <li><i class="fas fa-car"></i> Парковка: рядом с магазином</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Мы здесь!</h3>
+                        <p>ул. Мира 82, Красноярск</p>
+                        <div class="map-actions">
+                            <button class="btn-secondary" id="openMap">
+                                <i class="fas fa-directions"></i> Построить маршрут
+                            </button>
+                            <button class="btn-secondary" id="callTaxi">
+                                <i class="fas fa-taxi"></i> Вызвать такси
+                            </button>
+                            <button class="btn-secondary" id="copyAddress">
+                                <i class="fas fa-copy"></i> Скопировать адрес
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-hashtag"></i> Социальные сети</h3>
+                <div class="social-links">
+                    <a href="https://vk.com/animangaparadise" class="social-link vk" target="_blank">
+                        <i class="fab fa-vk"></i> VKontakte
+                    </a>
+                    <a href="https://t.me/animangaparadise" class="social-link telegram" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="https://instagram.com/animangaparadise" class="social-link instagram" target="_blank">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://youtube.com/@animangaparadise" class="social-link youtube" target="_blank">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-question-circle"></i> Помощь</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Доставка и оплата</a></li>
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Возврат товара</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Частые вопросы</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Техническая поддержка</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> О нас</h3>
+                <p>AniManga Paradise - магазин для настоящих фанатов аниме, манги и комиксов. Мы предлагаем широкий выбор товаров и мерча по самым популярным фандомам.</p>
+                <div class="newsletter">
+                    <h4>Подпишись на новости:</h4>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Ваш email" id="newsletterEmail">
+                        <button class="btn-secondary" id="subscribeBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+                <i class="fas fa-credit-card" title="Наличные"></i>
+                <i class="fas fa-fish" title="Рыбкой"></i>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 AniManga Paradise. Все права защищены.</p>
+                <p class="made-with">
+                    <i class="fas fa-heart"></i> Сделано с любовью для фанатов аниме <i class="fas fa-heart"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно для вызова такси -->
+    <div class="modal taxi-modal" id="taxiModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeTaxiModal">&times;</button>
+            <div class="taxi-content">
+                <div class="taxi-image">
+                    <img src="https://media.tenor.com/CXQ44wbmC9MAAAAi/nyancat-rainbow.gif" alt="Котик-такси">
+                </div>
+                <div class="taxi-text">
+                    <h2>Куда едем, мяу? 🐱🚕</h2>
+                    <p>Выберите удобный для вас сервис такси:</p>
+                    <div class="taxi-services">
+                        <div class="taxi-buttons">
+                            <a href="https://taxi.yandex.ru" target="_blank" class="taxi-service-btn yandex">
+                                <i class="fas fa-taxi"></i> Яндекс.Такси
+                            </a>
+                            <a href="https://www.uber.com/ru/ru/" target="_blank" class="taxi-service-btn uber">
+                                <i class="fas fa-car"></i> Uber
+                            </a>
+                            <a href="https://taximaxim.ru" target="_blank" class="taxi-service-btn maxim">
+                                <i class="fas fa-taxi"></i> Максим
+                            </a>
+                        </div>
+                    </div>
+                    <p class="cat-advice">Совет от котика: всегда проверяйте номер машины и имя водителя!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script>
+        // Функция для показа уведомлений
+        function showNotification(message, type = 'info', duration = 3000) {
+            const container = document.getElementById('notificationContainer');
+            if (!container) return;
+
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                            <span>${message}</span>
+                        `;
+
+            container.appendChild(notification);
+
+            // Автоматическое удаление через указанное время
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, duration);
+
+            // Возможность закрыть кликом
+            notification.addEventListener('click', () => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            });
+        }
+
+        // Функция для копирования адреса
+        document.getElementById('copyAddress')?.addEventListener('click', function () {
+            const address = 'город Красноярск Мира 82';
+            navigator.clipboard.writeText(address).then(() => {
+                showNotification('Адрес скопирован: ' + address, 'success');
+
+                // Временное изменение текста кнопки
+                const originalHTML = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+                this.style.background = 'var(--success-color)';
+
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                    this.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                showNotification('Не удалось скопировать адрес', 'error');
+            });
+        });
+
+        // Управление галереей артов
+        function initGallery(galleryId, prevBtnId, nextBtnId, currentPageId, totalPagesId) {
+            const gallery = document.getElementById(galleryId);
+            if (!gallery) return;
+
+            const pages = gallery.querySelectorAll('.gallery-page');
+            const prevBtn = document.getElementById(prevBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+            const currentPageSpan = document.getElementById(currentPageId);
+            const totalPagesSpan = document.getElementById(totalPagesId);
+
+            let currentPage = 1;
+            const totalPages = pages.length;
+
+            // Устанавливаем общее количество страниц
+            totalPagesSpan.textContent = totalPages;
+
+            function showPage(pageNumber) {
+                // Скрываем все страницы
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // Показываем нужную страницу
+                const targetPage = gallery.querySelector(`.gallery-page[data-page="${pageNumber}"]`);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    currentPage = pageNumber;
+                    currentPageSpan.textContent = currentPage;
+
+                    // Обновляем состояние кнопок
+                    prevBtn.disabled = currentPage === 1;
+                    nextBtn.disabled = currentPage === totalPages;
+                }
+            }
+
+            // Инициализация
+            showPage(1);
+
+            // Обработчики кнопок
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    showPage(currentPage - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    showPage(currentPage + 1);
+                }
+            });
+        }
+
+        // Инициализация после загрузки DOM
+        document.addEventListener('DOMContentLoaded', function () {
+            // Галерея артов
+            initGallery('artGallery', 'artPrev', 'artNext', 'artCurrentPage', 'artTotalPages');
+
+            // Галерея косплеев
+            initGallery('cosplayGallery', 'cosplayPrev', 'cosplayNext', 'cosplayCurrentPage', 'cosplayTotalPages');
+
+            // Обработка кнопок соцсетей в модальном окне
+            document.getElementById('vkLogin')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                showNotification('Регистрация через ВКонтакте временно недоступна. Следите за обновлениями!', 'warning');
+            });
+
+            document.getElementById('telegramLogin')?.addEventListener('click', function (e) {
+                e.preventDefault();
+                showNotification('Регистрация через Telegram временно недоступна. Следите за обновлениями!', 'warning');
+            });
+
+            // Кнопка "Присоединиться к нашему отряду!"
+            document.getElementById('joinTeamBtn')?.addEventListener('click', function () {
+                document.getElementById('authModal').classList.add('active');
+            });
+
+            // Кнопка "Узнать условия акции" в кофейне
+            document.getElementById('coffeePromoBtn')?.addEventListener('click', function () {
+                document.getElementById('coffeeModal').classList.add('active');
+            });
+
+            // Кнопка "Вызвать такси"
+            document.getElementById('callTaxi')?.addEventListener('click', function () {
+                document.getElementById('taxiModal').classList.add('active');
+            });
+
+            // Закрытие модальных окон
+            document.querySelectorAll('.modal-close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function () {
+                    this.closest('.modal').classList.remove('active');
+                });
+            });
+
+            // Закрытие по клику вне модального окна
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function (e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+            });
+
+            // Закрытие по клавише ESC
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal.active').forEach(modal => {
+                        modal.classList.remove('active');
+                    });
+                }
+            });
+
+            // Подписка на рассылку
+            document.getElementById('subscribeBtn')?.addEventListener('click', function () {
+                const emailInput = document.getElementById('newsletterEmail');
+                const email = emailInput.value.trim();
+
+                if (!email || !email.includes('@')) {
+                    showNotification('Пожалуйста, введите корректный email', 'warning');
+                    return;
+                }
+
+                showNotification('Вы успешно подписались на рассылку!', 'success');
+                emailInput.value = '';
+
+                // Анимация кнопки
+                const originalHTML = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-check"></i>';
+                this.style.background = 'var(--success-color)';
+
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                    this.style.background = '';
+                }, 2000);
+            });
+
+            // Аккордеон для новостей
+            const newsItems = document.querySelectorAll('.news-item');
+            if (newsItems.length > 0) {
+                newsItems.forEach(item => {
+                    const header = item.querySelector('.news-header');
+                    header.addEventListener('click', () => {
+                        // Закрываем все другие новости
+                        newsItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                            }
+                        });
+
+                        // Переключаем текущую новость
+                        item.classList.toggle('active');
+                    });
+                });
+            }
+
+            // Инициализация слайдера баннеров
+            initBannerSlider();
+        });
+
+        // Баннер-слайдер
+        function initBannerSlider() {
+            const slider = document.getElementById('bannerSlider');
+            if (!slider) return;
+
+            const slides = slider.querySelectorAll('.banner-slide');
+            const dots = slider.querySelectorAll('.banner-dot');
+            let currentSlide = 0;
+            let slideInterval;
+        }
+    </script>
+
+</body>
+</html>

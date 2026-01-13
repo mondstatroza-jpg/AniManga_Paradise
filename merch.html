@@ -1,0 +1,463 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Аниме-мерч и аксессуары | AniManga Paradise</title>
+
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <!-- Специальные стили для страницы мерча -->
+    <link rel="stylesheet" href="css/merch.css">
+
+    <!-- Иконки и шрифты -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body class="light-theme">
+    <!-- Контейнер для уведомлений -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Анимированный фон -->
+    <div class="background-animation light-background" id="backgroundAnimation"></div>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-sun" id="themeLogo"></i>
+                </div>
+                <h1 class="site-name">AniManga Paradise</h1>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Главная
+                </a>
+                <a href="catalog.html" class="nav-link">
+                    <i class="fas fa-book"></i> Каталог
+                </a>
+                <a href="news.html" class="nav-link">
+                    <i class="fas fa-newspaper"></i> Новости
+                </a>
+                <a href="merch.html" class="nav-link">
+                    <i class="fas fa-tshirt"></i> Мерч
+                </a>
+                <a href="forum.html" class="nav-link">
+                    <i class="fas fa-comments"></i> Форум
+                </a>
+            </nav>
+
+            <!-- Блок иконок в горизонтальном виде -->
+            <div class="header-icons-container">
+                <div class="icon-with-badge">
+                    <a href="cart.html" class="icon-btn cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="icon-badge cart-count">3</span>
+                        <span class="icon-tooltip">Корзина</span>
+                    </a>
+                </div>
+                <div class="icon-with-badge">
+                    <a href="profile.html" class="icon-btn profile-icon">
+                        <i class="fas fa-user"></i>
+                        <span class="icon-tooltip">Профиль</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="theme-switcher">
+                    <button class="theme-btn" data-theme="light" title="Светлая тема">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="dark" title="Темная тема">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="theme-btn" data-theme="anime" title="Аниме тема">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+            <span><i class="fas fa-chevron-right"></i></span>
+            <a href="merch.html" class="active">Аниме-мерч</a>
+        </div>
+    </div>
+
+    <!-- Основной контент мерча -->
+    <main class="merch-page">
+        <div class="container">
+            <!-- Заголовок и поиск -->
+            <div class="merch-header">
+                <div class="merch-title-section">
+                    <h1 class="page-title">
+                        <i class="fas fa-tshirt"></i> Аниме-мерч и аксессуары
+                    </h1>
+                    <p class="page-subtitle">Одежда, фигурки, постеры и другие товары с любимыми персонажами</p>
+                </div>
+
+                <!-- Поиск товаров -->
+                <div class="merch-search">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="merchSearch" placeholder="Поиск товаров...">
+                        <button class="search-btn" id="searchMerchBtn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Категории мерча -->
+            <div class="merch-categories">
+                <div class="category-filters">
+                    <button class="category-filter-btn active" data-category="all">
+                        <i class="fas fa-star"></i> Все товары
+                        <span class="category-count">189</span>
+                    </button>
+                    <button class="category-filter-btn" data-category="clothing">
+                        <i class="fas fa-tshirt"></i> Одежда
+                        <span class="category-count">56</span>
+                    </button>
+                    <button class="category-filter-btn" data-category="figures">
+                        <i class="fas fa-user-ninja"></i> Фигурки
+                        <span class="category-count">42</span>
+                    </button>
+                    <button class="category-filter-btn" data-category="cosplay">
+                        <i class="fas fa-mask"></i> Косплей
+                        <span class="category-count">28</span>
+                    </button>
+                    <button class="category-filter-btn" data-category="home">
+                        <i class="fas fa-mug-hot"></i> Для дома
+                        <span class="category-count">24</span>
+                    </button>
+                    <button class="category-filter-btn" data-category="accessories">
+                        <i class="fas fa-pen-fancy"></i> Аксессуары
+                        <span class="category-count">29</span>
+                    </button>
+                    <button class="category-filter-btn" data-category="posters">
+                        <i class="fas fa-image"></i> Постеры
+                        <span class="category-count">38</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Основной контент с фильтрами и товарами -->
+            <div class="merch-layout">
+                <!-- Боковая панель с фильтрами -->
+                <aside class="merch-sidebar">
+                    <div class="filter-section">
+                        <h3 class="filter-title">
+                            <i class="fas fa-filter"></i> Фильтры
+                            <button class="reset-filters-btn" id="resetMerchFilters">
+                                <i class="fas fa-redo"></i> Сбросить
+                            </button>
+                        </h3>
+
+                        <!-- Сортировка -->
+                        <div class="filter-group">
+                            <h4 class="filter-subtitle">
+                                <i class="fas fa-sort"></i> Сортировать
+                            </h4>
+                            <div class="sort-options">
+                                <label class="sort-option">
+                                    <input type="radio" name="sort" value="new" checked>
+                                    <span>Сначала новые</span>
+                                </label>
+                                <label class="sort-option">
+                                    <input type="radio" name="sort" value="popular">
+                                    <span>Популярные</span>
+                                </label>
+                                <label class="sort-option">
+                                    <input type="radio" name="sort" value="price_asc">
+                                    <span>Цена: по возрастанию</span>
+                                </label>
+                                <label class="sort-option">
+                                    <input type="radio" name="sort" value="price_desc">
+                                    <span>Цена: по убыванию</span>
+                                </label>
+                                <label class="sort-option">
+                                    <input type="radio" name="sort" value="discount">
+                                    <span>Скидки</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Фандомы -->
+                        <div class="filter-group">
+                            <h4 class="filter-subtitle">
+                                <i class="fas fa-users"></i> Фандомы
+                            </h4>
+                            <div class="fandom-filters">
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="naruto">
+                                    <span>Наруто</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="chainsaw" checked>
+                                    <span>Человек-бензопила</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="jujutsu">
+                                    <span>Магическая битва</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="attack_titan">
+                                    <span>Атака титанов</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="one_piece">
+                                    <span>Ван Пис</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="my_hero">
+                                    <span>Моя геройская академия</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="demon_slayer">
+                                    <span>Истребитель демонов</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="bleach">
+                                    <span>Блич</span>
+                                </label>
+                                <label class="fandom-option">
+                                    <input type="checkbox" value="hunter">
+                                    <span>Хантер х Хантер</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Цена -->
+                        <div class="filter-group">
+                            <h4 class="filter-subtitle">
+                                <i class="fas fa-tags"></i> Цена, ₽
+                            </h4>
+                            <div class="price-filter">
+                                <div class="price-inputs">
+                                    <div class="price-input">
+                                        <input type="number" id="priceMin" placeholder="от 199" min="0" max="10000" value="199">
+                                    </div>
+                                    <div class="price-input">
+                                        <input type="number" id="priceMax" placeholder="до 9999" min="0" max="10000" value="9999">
+                                    </div>
+                                </div>
+                                <div class="price-slider">
+                                    <input type="range" class="range-slider" id="priceRangeMin" min="0" max="10000" value="199">
+                                    <input type="range" class="range-slider" id="priceRangeMax" min="0" max="10000" value="9999">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Размеры (для одежды) -->
+                        <div class="filter-group" id="sizeFilterGroup">
+                            <h4 class="filter-subtitle">
+                                <i class="fas fa-ruler"></i> Размеры
+                            </h4>
+                            <div class="size-filters">
+                                <label class="size-option">
+                                    <input type="checkbox" value="XS">
+                                    <span>XS</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="checkbox" value="S" checked>
+                                    <span>S</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="checkbox" value="M">
+                                    <span>M</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="checkbox" value="L">
+                                    <span>L</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="checkbox" value="XL">
+                                    <span>XL</span>
+                                </label>
+                                <label class="size-option">
+                                    <input type="checkbox" value="XXL">
+                                    <span>XXL</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary apply-filters" id="applyMerchFilters">
+                            <i class="fas fa-check"></i> Применить фильтры
+                        </button>
+                    </div>
+
+                    <!-- Баннер скидок -->
+                    <div class="discount-banner">
+                        <div class="banner-content">
+                            <h4><i class="fas fa-percentage"></i> Скидка 25%</h4>
+                            <p>На всю одежду до конца месяца!</p>
+                            <span class="discount-code">Промокод: ANIMEMARCH</span>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Основная область с товарами -->
+                <div class="merch-content">
+                    <!-- Панель информации -->
+                    <div class="merch-toolbar">
+                        <div class="merch-toolbar-info">
+                            <span class="products-count" id="merchCount">189 товаров</span>
+                            <span class="current-category" id="currentCategory">Все товары</span>
+                        </div>
+
+                        <div class="view-options">
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="grid" title="Сетка">
+                                    <i class="fas fa-th-large"></i>
+                                </button>
+                                <button class="view-btn" data-view="list" title="Список">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Сетка товаров -->
+                    <div class="merch-grid" id="merchGrid">
+                        <!-- Товары будут загружены через JavaScript -->
+                    </div>
+
+                    <!-- Список товаров (альтернативный вид) -->
+                    <div class="merch-list" id="merchList" style="display: none;">
+                        <!-- Товары в виде списка -->
+                    </div>
+
+                    <!-- Пагинация -->
+                    <div class="merch-pagination">
+                        <a href="#" class="page-nav prev disabled">
+                            <i class="fas fa-chevron-left"></i> Назад
+                        </a>
+                        <div class="page-numbers">
+                            <a href="#" class="page-number active">1</a>
+                            <a href="#" class="page-number">2</a>
+                            <a href="#" class="page-number">3</a>
+                            <a href="#" class="page-number">4</a>
+                            <span class="page-dots">...</span>
+                            <a href="#" class="page-number">8</a>
+                        </div>
+                        <a href="#" class="page-nav next">
+                            Вперед <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Информация о доставке -->
+                    <div class="merch-info-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-info-circle"></i> Информация о мерче
+                        </h3>
+                        <div class="info-cards">
+                            <div class="info-card">
+                                <i class="fas fa-award"></i>
+                                <h4>Официальный мерч</h4>
+                                <p>Все товары лицензированы и произведены официальными производителями</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-shipping-fast"></i>
+                                <h4>Быстрая доставка</h4>
+                                <p>Доставка по России 3-7 дней. Самовывоз в Красноярске</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-exchange-alt"></i>
+                                <h4>Возврат и обмен</h4>
+                                <p>Возврат в течение 14 дней при сохранении товарного вида</p>
+                            </div>
+                            <div class="info-card">
+                                <i class="fas fa-gift"></i>
+                                <h4>Подарки к заказу</h4>
+                                <p>Каждый заказ получает стикеры и открытки в подарок</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><i class="fas fa-hashtag"></i> Социальные сети</h3>
+                <div class="social-links">
+                    <a href="https://vk.com/animangaparadise" class="social-link vk" target="_blank">
+                        <i class="fab fa-vk"></i> VKontakte
+                    </a>
+                    <a href="https://t.me/animangaparadise" class="social-link telegram" target="_blank">
+                        <i class="fab fa-telegram"></i> Telegram
+                    </a>
+                    <a href="https://instagram.com/animangaparadise" class="social-link instagram" target="_blank">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://youtube.com/@animangaparadise" class="social-link youtube" target="_blank">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-question-circle"></i> Помощь покупателю</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Доставка и оплата</a></li>
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Возврат товара</a></li>
+                    <li><a href="#"><i class="fas fa-question"></i> Частые вопросы</a></li>
+                    <li><a href="#"><i class="fas fa-headset"></i> Поддержка 24/7</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3><i class="fas fa-info-circle"></i> О магазине</h3>
+                <p>AniManga Paradise - крупнейший магазин аниме, манги и мерча в России. Мы работаем с 2015 года и предлагаем только оригинальную продукцию.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Мира 82, Красноярск</p>
+                    <p><i class="fas fa-phone"></i> +7 (391) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@animanga.ru</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa" title="Visa"></i>
+                <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                <i class="fab fa-cc-paypal" title="PayPal"></i>
+                <i class="fab fa-cc-apple-pay" title="Apple Pay"></i>
+                <i class="fas fa-credit-card" title="Наличные"></i>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2015-2024 AniManga Paradise. Все права защищены.</p>
+                <p class="made-with">
+                    <i class="fas fa-heart"></i> Сделано с любовью для фанатов аниме
+                    <i class="fas fa-heart"></i>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="js/merch.js"></script>
+</body>
+</html>
